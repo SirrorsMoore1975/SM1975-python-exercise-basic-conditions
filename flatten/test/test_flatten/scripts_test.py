@@ -1,5 +1,5 @@
 import pytest
-from scripts import flatten
+from src.scripts import flatten
 
 @pytest.mark.parametrize("_list, expected",[
     ([1, 2, 3, [4, 5, 6]],[1, 2, 3, 4, 5, 6]),
