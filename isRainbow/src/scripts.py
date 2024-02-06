@@ -5,7 +5,7 @@
  */
 """
 import json
-with open("rainbow.json") as rainbow:
+with open("src/rainbow.json") as rainbow:
     payload = json.load(rainbow)
     rainbowColor = payload[0]["color"]
 
