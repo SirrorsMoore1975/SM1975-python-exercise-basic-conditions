@@ -1,5 +1,5 @@
 import pytest
-from scripts import isRainbowColor
+from src.scripts import isRainbowColor
 
 @pytest.mark.parametrize("color,expected",[
     ("red",True),
