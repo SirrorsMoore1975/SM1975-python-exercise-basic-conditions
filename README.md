@@ -8,18 +8,19 @@ The general proposes of this project is to practice python scripting and passing
 
 the folder structure for each function should be like so:- 
 ```
-isRainbow
+Exercises
+    |---isRainbow
         |--- src
-        |      |--- __init__.py
-        |      |--- scripts.py
+        |   |--- __init__.py
+        |   |--- scripts.py
         |
         |--- test
-                |--- __init__.py
-                |--- conftest.py
-                |--- pytest.ini
-                |--- test_isRainbow
-                               |--- __inti__.py
-                               |--- scripts_test.py
+            |--- __init__.py
+            |--- conftest.py
+            |--- pytest.ini
+            |--- test_isRainbow
+                |--- __inti__.py
+                |--- scripts_test.py
 ```
 Where:
 - `__init__.py` located inside `src`, `test` and `test_{function_name}` folders are empty files that allow python to locate the `scripts.py` and `scripts_test.py`.
