@@ -66,7 +66,7 @@ pip install package1 package2
 (We needed pytest, replace package with `pytest`)
 
 ## Install dependencies from a requirements.txt file
-If you are cloning the project from source, install dependencies from a requirements.txt file:-
+If you are cloning the project from source, install dependencies from a `requirements.txt` file:-
 ```
 pip install -r requirements.txt
 ```
@@ -84,16 +84,17 @@ deactivate
 ```
 
 ## Test you function
-1. Relocate your location to the function name folder.
-1. Running the following command should check if the scripted function passed the scripts_test test:-
+1. Relocate your location to the function name folder. Make sure you are in the right location: `(env) /path/to/your/exercises/function$ `
+1. Running the following command should check if the scripted function passed the `scripts_test.py` test:-
 ```
-(venv)$ python -m pytest test
+python -m pytest test
 ```
-__Note:__ make sure `scripts_test.py` import the function from the correct path:-
+__Note:__ make sure and check your `scripts_test.py` file has imported the function from the correct path:-
 
 ```py
 from src.scripts import isRainbow
 ```
+<div style="margin-left:60px;">^^^^^^^^^^</div>
 
 # Sources
 For test driven development in python, read the following:
