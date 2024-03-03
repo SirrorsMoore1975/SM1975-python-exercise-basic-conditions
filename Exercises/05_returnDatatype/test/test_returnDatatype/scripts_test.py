@@ -1,7 +1,7 @@
 import pytest
 from src.scripts import returnDatatype
 
-@pytest.mask.parametrize("variable,expected",[
+@pytest.mark.parametrize("input,expected",[
     ((1,2,3,4),'tuple'),
     ([1,2,3,4],'list'),
     (5,'number'),
@@ -13,6 +13,6 @@ from src.scripts import returnDatatype
     (None, 'None Type')
 ])
 
-def test_returnDatatype(variable,expected):
-    result = returnDatatype(variable)
+def test_returnDatatype(input,expected:str):
+    result = returnDatatype(input)
     assert result == expected

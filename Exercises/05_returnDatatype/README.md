@@ -1,4 +1,4 @@
-# returnDatatype
+# RETURNDATATYPE
 
 The test will return the Datatype input to the function `returnDatatype`
 - [ ] create a function called returnDatatype with one input parameter
