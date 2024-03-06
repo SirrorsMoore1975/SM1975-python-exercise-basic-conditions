@@ -8,6 +8,10 @@ from src.scripts import calculation
     ("add",[1,2,3,4,5],-5,[-4,-3,-2,-1,0]),
     ("subtract", [11, 12, 13, 14, 15], 10, [1,2,3,4,5]),
     ("subtract", [6,7,8,9,10], 10, [-4, -3, -2, -1, 0]),
+    ("subtract", [10,9,8,7,6], -5, [15,14,13,12,11]),
+    ("multiply", [1,2,3,4,5], 2, [2,4,6,8,10]),
+    ("multiply", [1,2,3,4,5], -2. [-2,-4,-6,-8,-10]),
+    ("multiply", [1,5,0,2,4], 3, [3,15,0,6,12]),
 ])
 
 def test_calculation(sign, lst, value, expected ):
