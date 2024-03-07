@@ -12,6 +12,12 @@ from src.scripts import calculation
     ("multiply", [1,2,3,4,5], 2, [2,4,6,8,10]),
     ("multiply", [1,2,3,4,5], -2. [-2,-4,-6,-8,-10]),
     ("multiply", [1,5,0,2,4], 3, [3,15,0,6,12]),
+    ("divide", [10,8,6,4,2], 2, [5,4,3,2,1]),
+    ("divide", [0, 0 , 100], 0, [0,0,0]),
+    ("divide", [100,100,100],0,[0,0,0])
+    ("getRemainder", [1,2,3,4], 2, [1,0,1,0])
+    ("getRemainder", [2,4,6,8], 2, [0,0,0,0])
+    ("getRemainder", [1,2,3,4,5,6,7,8,9], 3, [1,2,0,1,2,0,1,2,0])
 ])
 
 def test_calculation(sign, lst, value, expected ):
