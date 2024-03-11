@@ -8,7 +8,7 @@
 
 
 
-def calculation(sign: str, x: list, value: int) -> list:
+def calculation(sign: str, x: list, value: int) -> list | str :
     allowed = ["add", "subtract", "multiply", "divide", "getRemainder"]
     if sign not in allowed:
         return "sign type used is undefined"
