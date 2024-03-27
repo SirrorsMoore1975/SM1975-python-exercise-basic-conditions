@@ -1,0 +1,2 @@
+def addStr(*arg):
+    pass
