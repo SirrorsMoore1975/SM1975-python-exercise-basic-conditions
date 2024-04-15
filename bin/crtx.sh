@@ -9,5 +9,7 @@ if [ -z "$1" ]; then
     exit 1
 fi
 
-project_name="$1"
-
+folder_path="./../Exercises/"
+# project_name="$1"
+num_directories=$(find "$folder_path" -type d -mindepth 1 | wc -l)
+echo "$num_directories"
