@@ -9,7 +9,14 @@ if [ -z "$1" ]; then
     exit 1
 fi
 
-folder_path="./../Exercises/"
+current_path=$(pwd)
+folder_path="./../Exercises"
 # project_name="$1"
-num_directories=$(find "$folder_path" -type d -mindepth 1 | wc -l)
-echo "$num_directories"
+directories=$(find "$folder_path/" -maxdepth 1 -type d)
+# num_directories=$("$directories" | wc -l )
+
+echo "😂:$directories"
+echo "🤣:$current_path"
+echo "$0"
+dirname "$0"
+for dir in "$folder_path*"; do echo "$dir"; done
