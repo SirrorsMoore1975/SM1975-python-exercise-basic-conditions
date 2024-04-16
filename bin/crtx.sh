@@ -12,11 +12,12 @@ fi
 current_path=$(pwd)
 folder_path="./../Exercises"
 # project_name="$1"
-directories=$(find "$folder_path/" -maxdepth 1 -type d)
-# num_directories=$("$directories" | wc -l )
+directories=$(find "$folder_path" -maxdepth 1 -type d)
+num_directories=$(find "$folder_path" -maxdepth 1 -type d | wc -l )
 
 echo "😂:$directories"
+echo "$num_directories"
 echo "🤣:$current_path"
 echo "$0"
 dirname "$0"
-for dir in "$folder_path*"; do echo "$dir"; done
+for dir in "$directories"; do echo "🤑$dir"; done
