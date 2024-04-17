@@ -42,7 +42,15 @@ echo "$bSameName"
 if [ "$bSameName" = false ]
 then
     echo "exercise name is unique"
+    new_num_dir=$((num_directories+1))
+    if ((num_directories < 9)) 
+    then
+        prefix="0${new_num_dir}_"
+    else
+        prefix="${new_num_dir}_"
+    fi    
 else
     echo "exercise name existed. Cannot create exercise"
     exit 1
 fi
+echo "$prefix$1"
