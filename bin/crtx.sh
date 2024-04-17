@@ -55,43 +55,67 @@ else
 fi
 
 function addExercise(){
-    folders=("src" "test" "test/test_${project_name}")
-    common_files="__init__.py"
+    
+    
     src_files="scripts.py"
     test_folder="test_${project_name}"
     testfd_files=("conftest.py" "pytest.ini")
     testprjctfiles="scripts_test.py"
 
-    add_scripts=("def ${project_name}:" "\t pass")
-    add_test_scripts=("import pytest" "from src.scripts import ${project_name}" "pytest.mark.parametrize("input,expected",[()])" "def test_${project_name}:" "\t result=${project_name}(input,expected)" "\t assert result == expected")
+    add_scripts=("def ${project_name}():" "    pass")
+    add_test_scripts=("import pytest" "from src.scripts import ${project_name}" "pytest.mark.parametrize("input,expected",[()])" "def test_${project_name}(input, expected):" "    result=${project_name}(input)" "    assert result == expected")
     echo "$folder_path"
     echo "$project_name"
     echo "$prefix$project_name"
-    echo "$folder_path/$prefix$project_name"
+    
 
+    # 1.) make the exercise folder:
+    # mkdir "$folder_path/$prefix$project_name"
+    echo "$folder_path/$prefix$project_name"
+    
+    # 2.) create folder src test and test/test_{project_name}
     exercise_folder="$folder_path/$prefix$project_name"
+    folders=("src" "test" "test/test_${project_name}")
+    common_files="__init__.py"
     for folder in "${folders[@]}"
     do
-        # mkdir
+        # mkdir "$exercise_folder/$folder" # ie {src,test,test/test_projectname}
         echo "$exercise_folder/$folder"
-        # touch __init__.py
+        # touch "$exercise_folder/$folder/$common_files" #ie {__init__.py}
         echo "$exercise_folder/$folder/$common_files"
     done
+    
+    # 3.) Create scripts.py at src
+    #touch src/scripts.py
+    echo "$exercise_folder/"${folders[0]}""
+    echo "$exercise_folder/"${folders[0]}"/$src_files"
+    
+    #4.) At test create test folder files
     echo "$exercise_folder/"${folders[1]}""
     test_fd="$exercise_folder/"${folders[1]}""
 
     for testfd in "${testfd_files[@]}"
     do
-        # touch conftest.py pytest.ini
+        # touch test/{conftest.py,pytest.ini}
         echo "$test_fd/$testfd"
     done
     
+    # 5.) At test/test_{project_name} create test_scripts.py
     echo "$exercise_folder/"${folders[1]}"/$test_folder"
     testprjfd="$exercise_folder/"${folders[1]}"/$test_folder"
 
-    # touch scripts_test.py
+    # touch scripts.py
     echo "$testprjfd/$testprjctfiles"
     
+    for script in "${add_scripts[@]}"
+    do
+        echo "$script" 
+    done # > ${exercise_folder}/src/scripts.py
+
+    for script in "${add_test_scripts[@]}"
+    do
+        echo "$script"
+    done # > ${exercise_folder}/test/test_${project_name}/scripts_test.py
 }
 
 addExercise
