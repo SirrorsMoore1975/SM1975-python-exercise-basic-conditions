@@ -11,7 +11,7 @@ fi
 
 current_path=$(pwd)
 folder_path="./../Exercises"
-# project_name="$1"
+project_name="$1"
 directories=$(find "$folder_path" -maxdepth 1 -type d)
 num_directories=$(find "$folder_path" -maxdepth 1 -type d | wc -l )
 num_directories=$((num_directories - 1))
@@ -32,7 +32,7 @@ do
     dir=${dir##*/} # print everything after the final "/"
     dir=${dir#??_} # remove the first two characters
     myARRAY+=("$dir")
-    if [ "$dir" = $1 ]
+    if [ "$dir" = $project_name ]
     then
         bSameName=true
     fi
@@ -53,4 +53,20 @@ else
     echo "exercise name existed. Cannot create exercise"
     exit 1
 fi
-echo "$prefix$1"
+
+function addExercise(){
+    folders=("src" "test")
+    test_folder="test_${project_name}"
+    common_files="__init__.py"
+    src_files="scripts.py"
+    testfd_files=("conftest.py" "pytest.ini")
+    testprjctfiles="scripts_test.py"
+    add_scripts=("def ${project_name}:" "\t pass")
+    add_test_scripts=("import pytest" "from src.scripts import ${project_name}" "pytest.mark.parametrize("input,expected",[()])" "def test_${project_name}:" "\t result=${project_name}(input,expected)" "\t assert result == expected")
+    echo "$folder_path"
+    echo "$project_name"
+    echo "$prefix$project_name"
+    echo "$folder_path/$prefix$project_name"
+}
+
+addExercise
