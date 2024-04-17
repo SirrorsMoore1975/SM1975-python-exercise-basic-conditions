@@ -55,18 +55,43 @@ else
 fi
 
 function addExercise(){
-    folders=("src" "test")
-    test_folder="test_${project_name}"
+    folders=("src" "test" "test/test_${project_name}")
     common_files="__init__.py"
     src_files="scripts.py"
+    test_folder="test_${project_name}"
     testfd_files=("conftest.py" "pytest.ini")
     testprjctfiles="scripts_test.py"
+
     add_scripts=("def ${project_name}:" "\t pass")
     add_test_scripts=("import pytest" "from src.scripts import ${project_name}" "pytest.mark.parametrize("input,expected",[()])" "def test_${project_name}:" "\t result=${project_name}(input,expected)" "\t assert result == expected")
     echo "$folder_path"
     echo "$project_name"
     echo "$prefix$project_name"
     echo "$folder_path/$prefix$project_name"
+
+    exercise_folder="$folder_path/$prefix$project_name"
+    for folder in "${folders[@]}"
+    do
+        # mkdir
+        echo "$exercise_folder/$folder"
+        # touch __init__.py
+        echo "$exercise_folder/$folder/$common_files"
+    done
+    echo "$exercise_folder/"${folders[1]}""
+    test_fd="$exercise_folder/"${folders[1]}""
+
+    for testfd in "${testfd_files[@]}"
+    do
+        # touch conftest.py pytest.ini
+        echo "$test_fd/$testfd"
+    done
+    
+    echo "$exercise_folder/"${folders[1]}"/$test_folder"
+    testprjfd="$exercise_folder/"${folders[1]}"/$test_folder"
+
+    # touch scripts_test.py
+    echo "$testprjfd/$testprjctfiles"
+    
 }
 
 addExercise
