@@ -44,4 +44,5 @@ then
     echo "exercise name is unique"
 else
     echo "exercise name existed. Cannot create exercise"
+    exit 1
 fi
