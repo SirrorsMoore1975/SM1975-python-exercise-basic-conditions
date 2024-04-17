@@ -20,4 +20,15 @@ echo "$num_directories"
 echo "🤣:$current_path"
 echo "$0"
 dirname "$0"
-for dir in "$directories"; do echo "🤑$dir"; done
+
+myARRAY=()
+
+#list directories in the form "./../Exercises/dirname/"
+for dir in $folder_path/*/ 
+do 
+    dir=${dir%*/}  # remove the trailing "/"
+    dir=${dir##*/} # print everything after the final "/"
+    dir=${dir#??_} # remove the first two characters
+    myARRAY+=("$dir")
+done
+echo "${myARRAY[@]}"
