@@ -14,6 +14,7 @@ folder_path="./../Exercises"
 # project_name="$1"
 directories=$(find "$folder_path" -maxdepth 1 -type d)
 num_directories=$(find "$folder_path" -maxdepth 1 -type d | wc -l )
+num_directories=$((num_directories - 1))
 
 echo "😂:$directories"
 echo "$num_directories"
@@ -22,6 +23,7 @@ echo "$0"
 dirname "$0"
 
 myARRAY=()
+bSameName=false
 
 #list directories in the form "./../Exercises/dirname/"
 for dir in $folder_path/*/ 
@@ -30,5 +32,16 @@ do
     dir=${dir##*/} # print everything after the final "/"
     dir=${dir#??_} # remove the first two characters
     myARRAY+=("$dir")
+    if [ "$dir" = $1 ]
+    then
+        bSameName=true
+    fi
 done
 echo "${myARRAY[@]}"
+echo "$bSameName"
+if [ "$bSameName" = false ]
+then
+    echo "exercise name is unique"
+else
+    echo "exercise name existed. Cannot create exercise"
+fi
