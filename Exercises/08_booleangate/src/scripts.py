@@ -14,6 +14,19 @@ def booleangate_not(A):
     return not A
 
 def booleangate(logic, x, y):
+    match logic:
+        case "and":
+            if x:
+                return y
+            else:
+                return x
+        case "or":
+            if y:
+                return x
+            else:
+                return y
+        case _:
+            return "logic not defined"
     pass
 
 def giveTrue():
