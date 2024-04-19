@@ -21,20 +21,20 @@ def booleangate(logic, x, y):
             else:
                 return x
         case "or":
-            if y:
+            if x:
                 return x
             else:
                 return y
         case _:
             return "logic not defined"
-    pass
+    
 
 def giveTrue():
     return True
 
 def inverse_True(data):
     if (data) :
-        return True
-    else:
         return False
+    else:
+        return True
     

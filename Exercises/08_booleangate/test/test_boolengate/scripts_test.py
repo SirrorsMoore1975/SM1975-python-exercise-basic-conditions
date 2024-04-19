@@ -9,7 +9,7 @@ def test_giveTrue():
     ({}, True),
     (10,False),
     ([1,2,3],False),
-    ({"user":"John", "age":20,"gender":"male"})
+    ({"user":"John", "age":20,"gender":"male"},False)
 ])
 
 def test_inverseTrue(input,expected):
@@ -29,8 +29,8 @@ def test_inverseTrue(input,expected):
     ({} == {}, False),
     ([] == [], False),
     ({} == [], True),
-    (inverse_True(1), False),
-    (inverse_True(0), True)
+    (inverse_True(1), True),
+    (inverse_True(0), False)
 
 ])
 
