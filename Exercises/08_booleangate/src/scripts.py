@@ -12,3 +12,16 @@ boolengate
 
 def booleangate_not(A):
     return not A
+
+def booleangate(logic, x, y):
+    pass
+
+def giveTrue():
+    return True
+
+def inverse_True(data):
+    if (data) :
+        return True
+    else:
+        return False
+    
