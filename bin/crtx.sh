@@ -10,7 +10,6 @@ fi
 
 folder_path="./../Exercises"
 
-#directories=$(find "$folder_path" -maxdepth 1 -type d)
 num_directories=$(find "$folder_path" -maxdepth 1 -type d | wc -l )
 num_directories=$(( $num_directories - 1 ))
 
@@ -81,16 +80,16 @@ function addExercise(){
     #4.) At test create test folder files
     test_fd="$exercise_folder/"${folders[1]}""
 
-    for testfd in "${testfd_files[@]}"
+    for testfdfile in "${testfd_files[@]}"
     do
-        touch "$test_fd/$testfd"
-        echo "$test_fd/$testfd"
+        touch "$test_fd/$testfdfile"
+        echo "$test_fd/$testfdfile"
     done
     
     # 5.) At test/test_{project_name} create test_scripts.py
     testprjfd="$exercise_folder/"${folders[1]}"/$test_folder"
 
-    # touch scripts.py
+    # write scripts.py
     touch "$testprjfd/$testprjctfiles"
     echo "$testprjfd/$testprjctfiles"
     
@@ -104,7 +103,10 @@ function addExercise(){
         echo "$script"
     done > "${exercise_folder}/test/test_${project_name}/scripts_test.py"
 
+    # 7.) Add a README.md at the exercise_folder
     touch "${exercise_folder}/README.md"
+    echo "${exercise_folder}/README.md"
+    echo "# ${project_name}" > "${exercise_folder}/README.md"
 }
 
 addExercise
