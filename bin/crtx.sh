@@ -1,6 +1,7 @@
 #!/bin/bash
 
-if [ -z "$1" ] || [ "$#" -eq 0 ]
+project_name="$1"
+if [ -z "$project_name" ]
 then
     echo "Please provide a project name without space after $BASH_SOURCE {project_name}"
     echo "Exit script without create any directories or files"
@@ -8,10 +9,10 @@ then
 fi
 
 folder_path="./../Exercises"
-project_name="$1"
+
 #directories=$(find "$folder_path" -maxdepth 1 -type d)
 num_directories=$(find "$folder_path" -maxdepth 1 -type d | wc -l )
-num_directories=$((num_directories - 1))
+num_directories=$(( $num_directories - 1 ))
 
 bSameName=false
 
@@ -29,18 +30,19 @@ do
 done
 
 # Check if same name was used
+new_num_dir=$(( $num_directories+1 ))
 if [ "$bSameName" = false ]
 then
-    echo "exercise name is unique"
-    new_num_dir=$((num_directories+1))
-    if ((num_directories < 9)) 
+    echo "Exercise name is unique."
+    
+    if (( $new_num_dir < 10 ))  
     then
         prefix="0${new_num_dir}_"
     else
         prefix="${new_num_dir}_"
     fi    
 else
-    echo "exercise name ${project_name} existed. Cannot create exercise."
+    echo "Exercise name ${project_name} existed. Cannot create exercise."
     echo "Exiting script without create any directories or files."
     exit 1
 fi
