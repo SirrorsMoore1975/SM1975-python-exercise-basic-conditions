@@ -1,5 +1,5 @@
 # SM1975 python exercise basic conditions
-The general proposes of this project is to practice python scripting and passing the test given to each python function under the test driven development method (using `pytest`)
+The general purpose of this project is to practice python scripting and passing the test given to each python function under the test driven development method (using `pytest`)
 
 # Index for the functions
 (under constructions)
