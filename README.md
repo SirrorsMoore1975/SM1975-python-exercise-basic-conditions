@@ -51,7 +51,7 @@ __NB:__ In the time of writing this, `isRainbow` already existed, so the script 
 #### Optional: export to virtual environment PATH
  or alternatively, you can export the bin folder location to the virtual environment path by exporting the `PATH` of the bin folder in your local `env/bin/activate` file, add the following line to the file:-
 ```bash
-export PATH="$PATH:./../bin"
+export PATH="$PATH:$(pwd)/bin"
 ```
 ### Write your exercise script and test script
 #### Create the function inside scripts.py
