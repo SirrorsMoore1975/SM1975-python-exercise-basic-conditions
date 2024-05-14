@@ -1,7 +1,7 @@
 import pytest
 
 def pytest_configure(config):
-    config.addinivalue_line("makrers","detect_append: mark a test to detect usage of append method")
+    config.addinivalue_line("markers","detect_append: mark a test to detect usage of append method")
 
 @pytest.hookimpl(tryfirst=True)
 def pytest_pycollect_makeitem(collector,name,obj):
