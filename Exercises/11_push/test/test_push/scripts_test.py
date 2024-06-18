@@ -49,7 +49,17 @@ def test_push(_list, element, expected_list, expected_length):
 #     assert result == 5
 #     assert input == [1,2,3,4,5]
 
-    
+def test01_push():
+    input = [1,2,3,4]
+    result = push(input, 5)
+    assert result == 5
+    assert input == [1,2,3,4,5]
+
+def test02_push():
+    input = ["a", "b", "c"]
+    result = push(input, "d")
+    assert result == 4
+    assert input == ["a", "b", "c", "d"]
 
 
 # pytest.mark.parametrize('input,expected',[()])
