@@ -1,6 +1,6 @@
 
 import json
-with open("rainbow.json", "r") as rainbow:
+with open("../src/rainbow.json", "r") as rainbow:
     payload = json.load(rainbow)
     rainbowColor = payload[0]["color"]
 
@@ -20,5 +20,5 @@ def isRainbowColor(color: str) -> bool:
     #         #print(targetColor)
     #         return True
     # return False
-    print(rainbowColor.read())
+    #print(rainbowColor.read())
     return any(targetColor == color.lower() for targetColor in rainbowColor)
