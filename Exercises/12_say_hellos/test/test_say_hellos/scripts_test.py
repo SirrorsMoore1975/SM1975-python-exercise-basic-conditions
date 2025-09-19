@@ -1,4 +1,5 @@
 import pytest
+import json
 from src.scripts import say_hellos
 
 USERNAME="username"
@@ -46,6 +47,11 @@ users_payload=[
 
 legal_adult_age=[18,22,25]
 
+with open("../test/test_say_hellos/languages.json", "r") as reading_list:
+    # payload = json.load(reading_list)
+    # main_lang_list = payload
+    main_lang_list = json.load(reading_list)
+
 def creating_message_to_greet(name, lang):
     pass
 
@@ -54,7 +60,7 @@ def amend_legal_age(age):
     pass
 
 
-pytest.mark.parametrize('input,expected',[()])
+@pytest.mark.parametrize('legal_age,expected',[(18,19,20,21,22,23)])
 
 def test_say_hellos(input, expected):
     
