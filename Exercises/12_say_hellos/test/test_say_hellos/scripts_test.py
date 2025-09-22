@@ -47,7 +47,7 @@ users_payload=[
 
 legal_adult_age=[18,22,25]
 
-with open("../test/test_say_hellos/languages.json", "r") as reading_list:
+with open("../test/test_say_hellos/languages.json", "r", encoding="utf-8") as reading_list:
     # payload = json.load(reading_list)
     # main_lang_list = payload
     main_lang_list = json.load(reading_list)
