@@ -1,6 +1,6 @@
 import pytest
 import json
-from src.scripts import say_hellos
+from src.scripts import Greetings
 
 USERNAME="username"
 AGE="age"

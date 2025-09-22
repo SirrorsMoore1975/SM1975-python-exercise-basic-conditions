@@ -13,7 +13,7 @@ For this exercise you needed to know the following:
 - How to write `Classes` in Python
 - How to interact with a `json` file in Python
 
-## Task
+## Objective
 
 You task is to write a class that can handle:
 
@@ -41,6 +41,23 @@ You task is to write a class that can handle:
 - handle a full reset function so that the `hellos` language, age limit return to its default value
 
 Follow the given test lay down in the `test_scripts.py` and write to the `scripts.py` and `greetings.py` so that all tests are passed.
+
+## Tasks
+
+- [ ] Write a class `Greetings` that can call:
+  - [ ] a function `say_hellos` to say hello to a given user via the classes.
+    - [ ] When the user's languages are not in the `languages.json` list, the hello message should default to English.
+  - [ ] a function `amend_hello` to edit the hello message, without alter the `languages.json` via the classes.
+    - [ ] Existence of an internal list that recorded the new amendment
+  - [ ] a function `add_hello` to add new language of hello to the classes, and the `languages.json` file are not to be amended in the process.
+    - [ ] Existence of an internal list that recorded the new hello languages,
+    - [ ] The internal list is amendable.
+  - [ ] a function `reset_hello` to reset one language to the default hello message via the classes, if the languages does not existed in `languages.json` when reset, it should display the English hello message.
+  - [ ] a function `reset_all_hellos` to reset all hello languages back to its default via the classes.
+  - [ ] a function `is_adult` to return a message when a given person is an adult, by default the adult age is `20`, via the classes.
+  - [ ] a function `amend_adult_age` to change the adult age via the classes.
+  - [ ] a function `reset_adult_age` to change the adult age to its default value, i.e. `20`, via the classes.
+  - [ ] a function `reset_to_default` to default both hello languages and age limit via the classes.
 
 ## Sources
 
