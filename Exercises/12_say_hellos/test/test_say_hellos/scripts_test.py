@@ -64,5 +64,5 @@ def amend_legal_age(age):
 
 def test_say_hellos(input, expected):
     
-    result=say_hellos(input)
+    result=Greetings.say_hellos(input)
     assert result == expected
