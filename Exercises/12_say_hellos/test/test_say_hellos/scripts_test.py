@@ -12,6 +12,8 @@ JAPANESE="japanese"
 ROMANIAN="romanian"
 TAIWANESE="taiwanese_chinese"
 
+ENGLISH="english_british"
+
 users_payload=[
     {
         USERNAME:"Karen",
@@ -51,6 +53,11 @@ with open("../test/test_say_hellos/languages.json", "r", encoding="utf-8") as re
     # payload = json.load(reading_list)
     # main_lang_list = payload
     main_lang_list = json.load(reading_list)
+
+def test_greetings_no_alter():
+    for lang in main_lang_list:
+        print(lang)
+    
 
 def creating_message_to_greet(name, lang):
     pass
