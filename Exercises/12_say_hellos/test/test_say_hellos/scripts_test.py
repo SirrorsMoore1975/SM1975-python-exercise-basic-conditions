@@ -53,6 +53,12 @@ with open("../test/test_say_hellos/languages.json", "r", encoding="utf-8") as re
     # payload = json.load(reading_list)
     # main_lang_list = payload
     main_lang_list = json.load(reading_list)
+    
+with open("../test/test_say_hellos/test_languages.json","r", encoding="utf-8") as add_languages_list:
+    additional_lang_list = json.load(add_languages_list)
+
+with open("../test/test_say_hellos/update_languagees.json", "r", encoding="utf-8") as update_languages_list:
+    latest_add_lang_list = json.load(update_languages_list)
 
 def test_greetings_no_alter():
     for lang in main_lang_list:
