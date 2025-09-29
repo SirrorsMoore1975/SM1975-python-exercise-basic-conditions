@@ -60,6 +60,12 @@ with open("../test/test_say_hellos/test_languages.json","r", encoding="utf-8") a
 with open("../test/test_say_hellos/update_languagees.json", "r", encoding="utf-8") as update_languages_list:
     latest_add_lang_list = json.load(update_languages_list)
 
+languages = [item.keys() for item in main_lang_list]
+hellos = [item.values() for item in main_lang_list]
+
+def test_greetings_languages():
+    pass
+
 def test_greetings_no_alter():
     for lang in main_lang_list:
         print(lang)
