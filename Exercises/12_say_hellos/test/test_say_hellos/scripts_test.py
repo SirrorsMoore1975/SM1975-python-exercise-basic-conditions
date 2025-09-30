@@ -1,6 +1,10 @@
-import pytest
-import json
+import pytest, os, json
 from src.scripts import Greetings
+
+# self-test
+cwd = os.getcwd()
+print(f'current path: {cwd}')
+
 
 USERNAME="username"
 AGE="age"
@@ -49,19 +53,22 @@ users_payload=[
 
 legal_adult_age=[18,22,25]
 
-with open("../test/test_say_hellos/languages.json", "r", encoding="utf-8") as reading_list:
+with open("languages.json", "r", encoding="utf-8") as reading_list:
     # payload = json.load(reading_list)
     # main_lang_list = payload
     main_lang_list = json.load(reading_list)
     
-with open("../test/test_say_hellos/test_languages.json","r", encoding="utf-8") as add_languages_list:
+with open("test_languages.json","r", encoding="utf-8") as add_languages_list:
     additional_lang_list = json.load(add_languages_list)
 
-with open("../test/test_say_hellos/update_languagees.json", "r", encoding="utf-8") as update_languages_list:
+with open("update_languages.json", "r", encoding="utf-8") as update_languages_list:
     latest_add_lang_list = json.load(update_languages_list)
 
-languages = [item.keys() for item in main_lang_list]
-hellos = [item.values() for item in main_lang_list]
+languages = [str(item.keys()) for item in main_lang_list]
+hellos = [str(item.values()) for item in main_lang_list]
+
+# self-test
+print("languages\n",languages,"\nhellos\n",hellos)
 
 def test_greetings_languages():
     pass
