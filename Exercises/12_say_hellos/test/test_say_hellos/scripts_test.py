@@ -1,4 +1,9 @@
-import pytest, os, json
+"""
+   test script for say_hellos
+"""
+import os
+import json
+import pytest
 from src.scripts import Greetings
 
 # self-test
