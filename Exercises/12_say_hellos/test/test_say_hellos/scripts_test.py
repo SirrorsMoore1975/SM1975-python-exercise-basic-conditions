@@ -75,8 +75,19 @@ hellos = [str(item.values()) for item in main_lang_list]
 # self-test
 print("languages\n",languages,"\nhellos\n",hellos)
 
-def test_greetings_languages():
-    pass
+@pytest.mark.parametrize("candidate_index,expected",[
+    (0,"Kohnichiwa? Karen-san."),
+    (1,"Ce mai faceți? Robert."),
+    (2,"How are you? Quentin."),
+    (3,"Nǐ hǎo ma? Issac."),
+    (4,"How are you? Charlie."),
+    (5,"Kuidas läheb? Lopez.")
+])
+
+def test_greetings_languages(candidate_index,expected):
+    person=users_payload[candidate_index][USERNAME]
+    result = Greetings.say_hellos(person)
+    assert result == expected
 
 def test_greetings_no_alter():
     for lang in main_lang_list:

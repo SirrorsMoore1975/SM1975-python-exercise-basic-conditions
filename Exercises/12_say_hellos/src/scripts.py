@@ -8,7 +8,7 @@ class Greetings:
     
     def say_hellos(self):
         # YOUR CODE HERE
-        pass
+        return ""
     
     def amend_hello(self):
         # YOUR CODE HERE
