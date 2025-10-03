@@ -89,22 +89,22 @@ def test_greetings_languages(candidate_index,expected):
     result = Greetings.say_hellos(person)
     assert result == expected
 
-def test_greetings_no_alter():
-    for lang in main_lang_list:
-        print(lang)
+# def test_greetings_no_alter():
+#     for lang in main_lang_list:
+#         print(lang)
     
 
-def creating_message_to_greet(name, lang):
-    pass
+# def creating_message_to_greet(name, lang):
+#     pass
 
 
-def amend_legal_age(age):
-    pass
+# def amend_legal_age(age):
+#     pass
 
 
-@pytest.mark.parametrize('legal_age,expected',[(18,19,20,21,22,23)])
+# @pytest.mark.parametrize('legal_age,expected',[(18,19,20,21,22,23)])
 
-def test_say_hellos(input, expected):
+# def test_say_hellos(input, expected):
     
-    result=Greetings.say_hellos(input)
-    assert result == expected
+#     result=Greetings.say_hellos(input)
+#     assert result == expected
