@@ -1,14 +1,25 @@
+import json
+
 class Greetings:
     """
     class Greetings
     """
     def __init__(self) -> str :
         # YOUR CODE HERE
-        pass
+        with open("languages.json", "r", encoding="utf-8") as lang_json:
+            self.lang_json = json.load(lang_json)
+        self.lang_list = [lang.keys() for lang in self.lang_json]
     
-    def say_hellos(self):
+    def say_hellos(self, person, lang):
         # YOUR CODE HERE
-        return ""
+        JAPANESE="japanese"
+        ENGLISH="english_british"
+        lang = lang.lower()
+        if lang == JAPANESE:
+            person = person + "-san"
+        if self.lang_list in lang:
+            return f"{self.lang_json[lang]} {person}."
+        return f"{self.lang_json[ENGLISH]} {person}."
     
     def amend_hello(self):
         # YOUR CODE HERE
