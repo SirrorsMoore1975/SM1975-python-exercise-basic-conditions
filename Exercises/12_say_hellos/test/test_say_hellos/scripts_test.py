@@ -86,7 +86,8 @@ print("languages\n",languages,"\nhellos\n",hellos)
 
 def test_greetings_languages(candidate_index,expected):
     person=users_payload[candidate_index][USERNAME]
-    result = Greetings.say_hellos(person)
+    lang_use=users_payload[candidate_index][LANGUAGE]
+    result = Greetings.say_hellos(person, lang_use)
     assert result == expected
 
 # def test_greetings_no_alter():
