@@ -8,7 +8,8 @@ class Greetings:
         # YOUR CODE HERE
         with open("languages.json", "r", encoding="utf-8") as lang_json:
             self.default_lang_list = json.load(lang_json)
-        self.lang_list = [str(key) for key, _ in self.default_lang_list.items()]
+        if isinstance(self.default_lang_list, list) and len(self.default_lang_list) > 0:
+            self.lang_list = [str(dicts.keys()) for dicts in self.default_lang_list]
         ENGLISH="english_british"
         self.default_lang = ENGLISH
     
