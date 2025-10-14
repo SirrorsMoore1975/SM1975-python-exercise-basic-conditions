@@ -7,9 +7,16 @@ class Greetings:
     def __init__(self) -> str :
         # YOUR CODE HERE
         with open("languages.json", "r", encoding="utf-8") as lang_json:
-            self.default_lang_list = json.load(lang_json)
-        if isinstance(self.default_lang_list, list) and len(self.default_lang_list) > 0:
-            self.lang_list = [str(dicts.keys()) for dicts in self.default_lang_list]
+            self.df_lang_list = json.load(lang_json)
+        if not isinstance(self.df_lang_list, list):
+            return ValueError("the json file is not a list")
+        self.lang_available = []
+        for x in self.df_lang_list:
+            self.lang_available = [str(z.keys()) for z in x if z.keys() not in self.lang_available]
+        # for each_lang in self.df_lang_list:
+        #     if self.df_lang_list[each_lang] == 
+        #     self.lang_list = [] + [str(x.keys()) for x in each_lang]
+        
         ENGLISH="english_british"
         self.default_lang = ENGLISH
     
@@ -22,8 +29,8 @@ class Greetings:
         if lang == JAPANESE:
             person = person + "-san"
         if self.lang_list in lang:
-            return f"{self.default_lang_list[lang]} {person}."
-        return f"{self.default_lang_list[self.default_lang]} {person}."
+            return f"{self.df_lang_list[lang]} {person}."
+        return f"{self.df_lang_list[self.default_lang]} {person}."
     
     def amend_hello(self):
         # YOUR CODE HERE
