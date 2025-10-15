@@ -18,14 +18,12 @@ class Greetings:
             unique_keys.update(item.keys())
             if item.keys() == ENGLISH:
                 self.default_hello = item.values()
-        self.unique_lang_list = list(unique_keys)
+        self.unique_lang_list = list(str(unique_keys))
         # for each_lang in self.df_lang_list:
         #     if self.df_lang_list[each_lang] == 
         #     self.lang_list = [] + [str(x.keys()) for x in each_lang]
         
-        
-    
-    def say_hellos(self, person, lang):
+    def say_hellos(self, person:str, lang:str)->str:
         # YOUR CODE HERE
         JAPANESE="japanese"
         if not lang:
@@ -33,9 +31,10 @@ class Greetings:
         lang = lang.lower()
         if lang == JAPANESE:
             person = person + "-san"
-        for item in self.data:
-            if self.unique_lang_list in lang:
-                return f"{item[lang]} {person}."
+        if self.unique_lang_list in lang:
+            for item in self.data:
+                if item.keys() == lang:
+                    return f"{item[lang]} {person}."
         return f"{self.default_hello} {person}."
     
     def amend_hello(self):
