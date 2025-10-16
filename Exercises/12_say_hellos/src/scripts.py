@@ -34,6 +34,7 @@ class Greetings:
     def say_hellos(self, person:str, lang:str)->str:
         # YOUR CODE HERE
         JAPANESE="japanese"
+        print(self.return_hellos(lang))
         if not lang:
             lang = self.default_lang
         lang = lang.lower()
