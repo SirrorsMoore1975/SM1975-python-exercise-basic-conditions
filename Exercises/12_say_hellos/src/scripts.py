@@ -22,6 +22,14 @@ class Greetings:
         # for each_lang in self.df_lang_list:
         #     if self.df_lang_list[each_lang] == 
         #     self.lang_list = [] + [str(x.keys()) for x in each_lang]
+    
+    def return_hellos(self,lang:str) -> str:
+        lang = lang.lower()
+        for y in self.data:
+            for x in y:
+                if lang == x.keys():
+                    return x.values()
+        return self.default_hello
         
     def say_hellos(self, person:str, lang:str)->str:
         # YOUR CODE HERE
