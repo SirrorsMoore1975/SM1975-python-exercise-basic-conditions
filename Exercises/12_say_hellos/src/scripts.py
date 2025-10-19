@@ -6,13 +6,13 @@ class Greetings:
     """
     def __init__(self):
         # YOUR CODE HERE
-        ENGLISH="english_british"
-        self.default_lang = ENGLISH
+        #ENGLISH="english_british"
+        #self.default_lang = ENGLISH
         with open("languages.json", "r", encoding="utf-8") as lang_json:
             self.data = json.load(lang_json)
         if not isinstance(self.data, list):
             print(ValueError("the json file is not a list"))
-        self.default_hello = self.return_hellos(ENGLISH)
+        #self.default_hello = self.return_hellos(ENGLISH)
         # unique_keys = set()
         # for item in self.data:
         #     unique_keys.update(item.keys())
@@ -31,19 +31,14 @@ class Greetings:
                     return value
         return "How are you?"
         
-    def say_hellos(self, person:str, lang:str)->str:
+    def say_hellos(self, person:str="Anonymous", lang:str="british_english")->str:
         # YOUR CODE HERE
         JAPANESE="japanese"
-        AMERICAN="english_american"
         
-        if not lang:
-            lang = self.default_lang
         lang = lang.lower()
         if lang == JAPANESE:
             person = person + "-san"
-        if lang not in [AMERICAN, self.default_lang]:
-            return f"{self.return_hellos(lang)} {person}."
-        return f"{self.default_hello} {person}."
+        return f"{self.return_hellos(lang)} {person}."
     
     def amend_hello(self):
         # YOUR CODE HERE
