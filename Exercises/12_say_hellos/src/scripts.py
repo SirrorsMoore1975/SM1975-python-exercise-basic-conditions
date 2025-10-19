@@ -29,7 +29,7 @@ class Greetings:
             for key,value in y.items():
                 if lang == key:
                     return value
-        return self.default_hello
+        return "How are you?"
         
     def say_hellos(self, person:str, lang:str)->str:
         # YOUR CODE HERE
@@ -41,9 +41,9 @@ class Greetings:
         lang = lang.lower()
         if lang == JAPANESE:
             person = person + "-san"
-        if lang not in (AMERICAN, self.default_lang):
+        if lang not in [AMERICAN, self.default_lang]:
             return f"{self.return_hellos(lang)} {person}."
-        return f"{self.return_hellos(self.default_lang)} {person}."
+        return f"{self.default_hello} {person}."
     
     def amend_hello(self):
         # YOUR CODE HERE
