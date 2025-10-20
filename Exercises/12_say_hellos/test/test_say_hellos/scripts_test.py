@@ -17,6 +17,10 @@ LANGUAGE="language"
 ESTONIAN="estonian"
 FILIPINO="filipino"
 HAWAIIAN="hawaiian"
+HMONG_DAW="hmong_daw"
+YORUBA="yoruba"
+YUCATEC_MAYA="yucatec_maya"
+ZAPOTEC="zapotec"
 JAPANESE="japanese"
 ROMANIAN="romanian"
 TAIWANESE="taiwanese_chinese"
@@ -89,6 +93,51 @@ def test_greetings_languages(candidate_index,expected):
     lang_use=users_payload[candidate_index][LANGUAGE]
     result = Greetings().say_hellos(person, lang_use)
     assert result == expected
+
+@pytest.mark.parametrize("hellos",[])
+
+users_payload_two = [
+    {
+        USERNAME="Lara",
+        LANGUAGE=FILIPINO
+    },
+    {
+        USERNAME="Gentle",
+        LANGUAGE=HAWAIIAN
+    },
+    {
+        USERNAME="Alyx",
+        LANGUAGE=HMONG_DAW
+    },
+    {
+        USERNAME="Ramsey"
+    }
+]
+
+def test_add_language(hellos,p):
+    for i in additional_lang_list:
+        for key, value in i.items():
+            pass
+        pass
+    pass
+
+@pytest.mark.parametrize("candidate_index,expected",[
+    (0,"Ogenkidesuka? Karen-san."),
+    (1,"Ce mai faceți? Robert."),
+    (2,"How are you? Quentin."),
+    (3,"Nǐ hǎo ma? Issac."),
+    (4,"Howzit? Charlie."),
+    (5,"Kuidas sul läheb? Lopez.")
+])
+
+# def update_lang():
+#     for key,value in latest_add_lang_list.items():
+#         Greetings().amend_hello(key,value)
+#     print("lang_updated")
+
+# def test_amendment_hellos(lang, person, expected):
+#     Greetings().amend_hello(lang)
+#     pass
 
 # def test_greetings_no_alter():
 #     for lang in main_lang_list:
