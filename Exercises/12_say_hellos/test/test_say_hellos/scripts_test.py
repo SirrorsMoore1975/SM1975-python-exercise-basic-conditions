@@ -106,12 +106,20 @@ hellos = [str(item.values()) for item in main_lang_list]
 # self-test
 print("languages\n",languages,"\nhellos\n",hellos)
 
-def update_language():
+def add_language():
     for i in additional_lang_list:
         for key, value in i.items():
             Greetings().add_hello(key,value)
             
-def reset_language():
+def update_language():
+    for i in latest_add_lang_list:
+        for key, value in i.items():
+            Greetings().amend_hello(key,value)
+
+def reset_language(lang):
+    Greetings.reset_hello(lang)
+
+def reset_all_language():
     Greetings().reset_all_hellos()
 
 @pytest.mark.parametrize("candidate_index,expected",[
@@ -138,7 +146,11 @@ def test_greetings_languages(candidate_index,expected):
     (5,"Xi modo nuulu? Walter.")
 ])
 
-update_language()
+@pytest.fixture()
+    def before_each():
+        add_language()
+        yield
+        reset_all_language()
 
 def test_add_language(candidate_index,expected):
     person=users_payload_two[candidate_index][USERNAME]
