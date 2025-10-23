@@ -138,10 +138,7 @@ def test_greetings_languages(candidate_index,expected):
     assert result == expected
 
 @pytest.fixture
-    def my_before_each():
-        instance = Greetings()
-        yield instance
-        instance.reset_all_hellos()
+    
 
         
 @pytest.mark.parametrize("candidate_index,expected",[
