@@ -137,6 +137,13 @@ def test_greetings_languages(candidate_index,expected):
     result = Greetings().say_hellos(person, lang_use)
     assert result == expected
 
+@pytest.fixture
+    def my_before_each():
+        instance = Greetings()
+        yield instance
+        instance.reset_all_hellos()
+
+        
 @pytest.mark.parametrize("candidate_index,expected",[
     (0,"Kumusta ka na? Lara."),
     (1,"Pehea 'oe? Gentle."),
@@ -146,16 +153,10 @@ def test_greetings_languages(candidate_index,expected):
     (5,"Xi modo nuulu? Walter.")
 ])
 
-@pytest.fixture()
-    def before_each():
-        add_language()
-        yield
-        reset_all_language()
-
 def test_add_language(candidate_index,expected):
     person=users_payload_two[candidate_index][USERNAME]
     lang_use=users_payload[candidate_index][LANGUAGE]
-    result = Greetings().say_hellos(person, lang_use)
+    result = my_before_each().say_hellos(person, lang_use)
     assert result == expected
 
 @pytest.mark.parametrize("candidate_index,expected",[
