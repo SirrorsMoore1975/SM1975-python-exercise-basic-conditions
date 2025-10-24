@@ -137,10 +137,12 @@ def test_greetings_languages(candidate_index,expected):
     result = Greetings().say_hellos(person, lang_use)
     assert result == expected
 
-@pytest.fixture
-    
+@pytest.fixture(scope="module")
+def my_greeting_instance():
+    instance = Greetings()
+    add_language()
+    return instance
 
-        
 @pytest.mark.parametrize("candidate_index,expected",[
     (0,"Kumusta ka na? Lara."),
     (1,"Pehea 'oe? Gentle."),
@@ -153,7 +155,7 @@ def test_greetings_languages(candidate_index,expected):
 def test_add_language(candidate_index,expected):
     person=users_payload_two[candidate_index][USERNAME]
     lang_use=users_payload[candidate_index][LANGUAGE]
-    result = my_before_each().say_hellos(person, lang_use)
+    result = my_greeting_instance().say_hellos(person, lang_use)
     assert result == expected
 
 @pytest.mark.parametrize("candidate_index,expected",[
