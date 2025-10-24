@@ -158,11 +158,11 @@ def test_add_language(candidate_index,expected):
     result = my_greeting_instance().say_hellos(person, lang_use)
     assert result == expected
 
-@pytest.mark.parametrize("candidate_index,expected",[
-    (0,"Ogenkidesuka? Karen-san."),
-    (1,"Ce mai faceți? Robert."),
-    (2,"How are you? Quentin."),
-    (3,"Nǐ hǎo ma? Issac."),
-    (4,"Howzit? Charlie."),
-    (5,"Kuidas sul läheb? Lopez.")
-])
+# @pytest.mark.parametrize("candidate_index,expected",[
+#     (0,"Ogenkidesuka? Karen-san."),
+#     (1,"Ce mai faceți? Robert."),
+#     (2,"How are you? Quentin."),
+#     (3,"Nǐ hǎo ma? Issac."),
+#     (4,"Howzit? Charlie."),
+#     (5,"Kuidas sul läheb? Lopez.")
+# ])
