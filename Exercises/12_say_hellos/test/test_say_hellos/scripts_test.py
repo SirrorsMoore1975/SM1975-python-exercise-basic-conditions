@@ -166,32 +166,3 @@ def test_add_language(candidate_index,expected):
     (4,"Howzit? Charlie."),
     (5,"Kuidas sul läheb? Lopez.")
 ])
-
-# def update_lang():
-#     for key,value in latest_add_lang_list.items():
-#         Greetings().amend_hello(key,value)
-#     print("lang_updated")
-
-# def test_amendment_hellos(lang, person, expected):
-#     Greetings().amend_hello(lang)
-#     pass
-
-# def test_greetings_no_alter():
-#     for lang in main_lang_list:
-#         print(lang)
-    
-
-# def creating_message_to_greet(name, lang):
-#     pass
-
-
-# def amend_legal_age(age):
-#     pass
-
-
-# @pytest.mark.parametrize('legal_age,expected',[(18,19,20,21,22,23)])
-
-# def test_say_hellos(input, expected):
-    
-#     result=Greetings.say_hellos(input)
-#     assert result == expected
