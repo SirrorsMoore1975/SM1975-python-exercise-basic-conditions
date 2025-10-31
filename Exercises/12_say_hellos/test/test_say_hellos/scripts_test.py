@@ -157,7 +157,7 @@ def test_add_language(candidate_index,expected):
     if candidate_index == 0:
         add_language()
     person=users_payload_two[candidate_index][USERNAME]
-    lang_use=users_payload[candidate_index][LANGUAGE]
+    lang_use=users_payload_two[candidate_index][LANGUAGE]
     result = Greetings().say_hellos(person, lang_use)
     assert result == expected
 
