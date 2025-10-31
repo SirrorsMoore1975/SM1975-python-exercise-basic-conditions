@@ -154,33 +154,11 @@ def test_greetings_languages(candidate_index,expected):
 ])
 
 def test_add_language(candidate_index,expected):
-    """ 
-    The test for add language. 
-    This test will test the class when new language has been added.
-    After the test is completed, the new added languages add should be forgotten (this will required next test to check)
+    person=users_payload_two[candidate_index][USERNAME]
+    lang_use=users_payload_two[candidate_index][LANGUAGE]
+    result = Greetings().say_hellos(person, lang_use)
+    assert result == expected
 
-    Args:
-        candidate_index (_type_): _the index number of users_payload_two (int)_
-        expected (_type_): _the expected answer (str)_
-    """
-    
-    def before_test():
-        for i in additional_lang_list:
-            for key, value in i.items():
-                Greetings().add_hello(key,value)
-
-    def after_test():
-        Greetings().reset_all_hellos()
-
-    def test_add_cases():
-        person=users_payload_two[candidate_index][USERNAME]
-        lang_use=users_payload_two[candidate_index][LANGUAGE]
-        result = Greetings().say_hellos(person, lang_use)
-        assert result == expected
-
-    before_test() # setup test for add new language 
-    test_add_cases() # The test itself
-    after_test() # reset and remove added languages
 
 # @pytest.mark.parametrize("candidate_index,expected",[
 #     (0,"Ogenkidesuka? Karen-san."),
