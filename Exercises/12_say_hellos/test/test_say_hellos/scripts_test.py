@@ -143,6 +143,11 @@ def test_greetings_languages(candidate_index,expected):
 #     for key,value in additional_lang_list:
 #         Greetings().add_hello(key,value)
 #     return instance
+@pytest.fixture(scope="class")
+def update_lang_list(request,lang,hellos):
+    request.cls.add_hello(lang,hellos)
+    yield
+    request.cls.reset_all_hellos()
 
 @pytest.mark.parametrize("candidate_index,expected",[
     (0,"Kumusta ka na? Lara."),
@@ -153,12 +158,17 @@ def test_greetings_languages(candidate_index,expected):
     (5,"Xi modo nuulu? Walter.")
 ])
 
-def test_add_language(candidate_index,expected):
+@pytest.mark.usefixtures("update_lang_list")
+class TestClassWrapper(Greetings):
+    pass
+
+def test_add_language(TestClassWrapper,candidate_index,expected):
     if candidate_index == 0:
         add_language()
     person=users_payload_two[candidate_index][USERNAME]
     lang_use=users_payload_two[candidate_index][LANGUAGE]
-    result = Greetings().say_hellos(person, lang_use)
+    result = TestClassWrapper.say_hellos(person, lang_use)
+    #result = Greetings().say_hellos(person, lang_use)
     assert result == expected
 
 # @pytest.mark.parametrize("candidate_index,expected",[
