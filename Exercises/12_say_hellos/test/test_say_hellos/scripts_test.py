@@ -143,20 +143,38 @@ def test_greetings_languages(candidate_index,expected):
 #     for key,value in additional_lang_list:
 #         Greetings().add_hello(key,value)
 #     return instance
+# @pytest.fixture(scope="class")
+# def update_lang_list(request,lang,hellos):
+#     request.cls.add_hello(lang,hellos)
+#     yield
+#     request.cls.reset_all_hellos()
 
-@pytest.mark.parametrize("candidate_index,expected",[
-    (0,"Kumusta ka na? Lara."),
-    (1,"Pehea 'oe? Gentle."),
-    (2,"Koj nyob li cas lawm? Alyx."),
-    (3,"Bawo ni o se wa? Ramsey."),
-    (4,"Bix a beel? Clinton."),
-    (5,"Xi modo nuulu? Walter.")
+@pytest.mark.parametrize("candidate_index,add_lang,expected",[
+    (0,FILIPINO,"Kumusta ka na? Lara."),
+    (1,HAWAIIAN,"Pehea 'oe? Gentle."),
+    (2,HMONG_DAW,"Koj nyob li cas lawm? Alyx."),
+    (3,YORUBA,"Bawo ni o se wa? Ramsey."),
+    (4,YUCATEC_MAYA,"Bix a beel? Clinton."),
+    (5,ZAPOTEC,"Xi modo nuulu? Walter.")
 ])
 
-def test_add_language(candidate_index,expected):
+# @pytest.mark.usefixtures("update_lang_list")
+# class TestClassWrapper(Greetings):
+#     pass
+
+def search_lang_hello(lang_list,lang):
+    for keys, value in lang_list.items():
+        if keys == lang:
+            return {f"{keys}":f"{value}"}
+    return {f"{lang}":"How are you"}
+
+def test_add_language(candidate_index,add_lang,expected):
+    test_lang = search_lang_hello(add_languages_list,add_lang)
+    Greetings().add_hello(add_lang, test_lang[add_lang])
     person=users_payload_two[candidate_index][USERNAME]
     lang_use=users_payload_two[candidate_index][LANGUAGE]
     result = Greetings().say_hellos(person, lang_use)
+    #result = Greetings().say_hellos(person, lang_use)
     assert result == expected
 
 
