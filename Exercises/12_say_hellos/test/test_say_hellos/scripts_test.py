@@ -123,9 +123,10 @@ def reset_all_language():
     Greetings().reset_all_hellos()
     
 def search_lang_hello(lang_list,lang):
-    for keys, value in lang_list.items():
-        if keys == lang:
-            return {f"{keys}":f"{value}"}
+    for y in lang_list:
+        for keys, value in y.items():
+            if keys == lang:
+                return {f"{keys}":f"{value}"}
     return {f"{lang}":"How are you"}
 
 @pytest.mark.parametrize("candidate_index,expected",[
