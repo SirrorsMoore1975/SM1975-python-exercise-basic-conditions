@@ -121,6 +121,12 @@ def reset_language(lang):
 
 def reset_all_language():
     Greetings().reset_all_hellos()
+    
+def search_lang_hello(lang_list,lang):
+    for keys, value in lang_list.items():
+        if keys == lang:
+            return {f"{keys}":f"{value}"}
+    return {f"{lang}":"How are you"}
 
 @pytest.mark.parametrize("candidate_index,expected",[
     (0,"Kohnichiwa? Karen-san."),
@@ -161,12 +167,6 @@ def test_greetings_languages(candidate_index,expected):
 # @pytest.mark.usefixtures("update_lang_list")
 # class TestClassWrapper(Greetings):
 #     pass
-
-def search_lang_hello(lang_list,lang):
-    for keys, value in lang_list.items():
-        if keys == lang:
-            return {f"{keys}":f"{value}"}
-    return {f"{lang}":"How are you"}
 
 def test_add_language(candidate_index,add_lang,expected):
     test_lang = search_lang_hello(add_languages_list,add_lang)
