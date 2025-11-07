@@ -147,7 +147,7 @@ def test_greetings_languages(candidate_index,expected):
     (5,ZAPOTEC,"Xi modo nuulu? Walter.")
 ])
 
-def test_add_language(candidate_index,add_lang,additional_lang_list,expected):
+def test_add_language(candidate_index,add_lang,expected):
     test_lang = search_lang_hello(additional_lang_list,add_lang)
     Greetings().add_hello(add_lang, test_lang[add_lang])
     person=users_payload_two[candidate_index][USERNAME]
