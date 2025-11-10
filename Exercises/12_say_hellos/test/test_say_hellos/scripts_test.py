@@ -83,7 +83,7 @@ users_payload_two=[
 
 legal_adult_age=[18,22,25]
 
-@pytest.fixture(scope="module")
+# @pytest.fixture(scope="module")
 def data_list(database_json):
     with open(database_json, "r", encoding="utf-8") as the_data_list:
         return json.load(the_data_list)
