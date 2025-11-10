@@ -12,6 +12,7 @@ class Greetings:
             self.data = json.load(lang_json)
         if not isinstance(self.data, list):
             print(ValueError("the json file is not a list"))
+        self.additional_lang=[]
         #self.default_hello = self.return_hellos(ENGLISH)
         # unique_keys = set()
         # for item in self.data:
@@ -29,6 +30,10 @@ class Greetings:
             for key,value in y.items():
                 if lang == key:
                     return value
+        for x in self.additional_lang:
+            for key,value in x.items():
+                if lang == key:
+                    return value
         return "How are you?"
         
     def say_hellos(self, person:str="Anonymous", lang:str="british_english")->str:
@@ -44,13 +49,28 @@ class Greetings:
         # YOUR CODE HERE
         pass
     
-    def add_hello(self):
+    def add_hello(self, add_lang, hello_msg):
         # YOUR CODE HERE
-        pass
+        for y in self.additional_lang:
+            for key, value in y.items():
+                if key == add_lang:
+                    if value == hello_msg:
+                        print(f'{add_lang}:{value} has already existed. Action Abort.')
+                        return False
+                print(f'Entries: {add_lang}:{hello_msg} already existed. If you need to amend, use amend_hello instead. Action Abort.')
+                return False
+        self.additional_lang.append({add_lang:hello_msg})
+        print(f'{add_lang}:{hello_msg} add into self.additional_lang')
+        return True
     
-    def reset_hello(self):
+    def reset_hello(self, remove_lang):
         # YOUR CODE HERE
-        pass
+        for idx,y in enumerate(self.additional_lang):
+            for key, _ in y.items():
+                if key == remove_lang:
+                    del self.additional_lang[idx]
+                    return True
+        return False
     
     def reset_all_hellos(self):
         # YOUR CODE HERE
