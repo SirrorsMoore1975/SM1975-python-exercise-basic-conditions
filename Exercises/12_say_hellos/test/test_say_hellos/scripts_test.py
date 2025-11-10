@@ -83,14 +83,22 @@ users_payload_two=[
 
 legal_adult_age=[18,22,25]
 
-with open("languages.json", "r", encoding="utf-8") as reading_list:
-    main_lang_list = json.load(reading_list)
-    
-with open("test_languages.json","r", encoding="utf-8") as add_languages_list:
-    additional_lang_list = json.load(add_languages_list)
+# @pytest.fixture(scope="module")
+def data_list(database_json):
+    with open(database_json, "r", encoding="utf-8") as the_data_list:
+        return json.load(the_data_list)
 
-with open("update_languages.json", "r", encoding="utf-8") as update_languages_list:
-    latest_add_lang_list = json.load(update_languages_list)
+main_lang_list = data_list("languages.json")
+additional_lang_list = data_list("test_languages.json")
+latest_add_lang_list = data_list("update_languages.json")
+# with open("languages.json", "r", encoding="utf-8") as reading_list:
+#     main_lang_list = json.load(reading_list)
+    
+# with open("test_languages.json","r", encoding="utf-8") as add_languages_list:
+#     additional_lang_list = json.load(add_languages_list)
+
+# with open("update_languages.json", "r", encoding="utf-8") as update_languages_list:
+#     latest_add_lang_list = json.load(update_languages_list)
 
 def add_language():
     for i in additional_lang_list:
@@ -140,7 +148,7 @@ def test_greetings_languages(candidate_index,expected):
 ])
 
 def test_add_language(candidate_index,add_lang,expected):
-    test_lang = search_lang_hello(add_languages_list,add_lang)
+    test_lang = search_lang_hello(additional_lang_list,add_lang)
     Greetings().add_hello(add_lang, test_lang[add_lang])
     person=users_payload_two[candidate_index][USERNAME]
     lang_use=users_payload_two[candidate_index][LANGUAGE]
