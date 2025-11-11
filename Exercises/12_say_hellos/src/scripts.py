@@ -51,6 +51,7 @@ class Greetings:
     
     def add_hello(self, add_lang:str, hello_msg:str) -> None:
         # YOUR CODE HERE
+        result = {}
         add_lang = add_lang.lower()
         for x in self.data:
             for key, value in x.items():
@@ -63,10 +64,12 @@ class Greetings:
                     if value == hello_msg:
                         print(f'{add_lang}:{value} has already existed in additional language. No action executed.')
                         return None
-                print(f'Entries: {add_lang}:{value} already existed. If you need to amend {add_lang} to {hello_msg}, use amend_hello instead. Action thereby abort.')
-                return None
-        self.additional_lang.append({add_lang:hello_msg})
-        print(f'{add_lang}:{hello_msg} add into self.additional_lang')
+                    print(f'Entries: {add_lang}:{value} already existed. If you need to amend {add_lang}:{value} to {add_lang}:{hello_msg}, use amend_hello instead. Action thereby abort.')
+                    return None
+        result = {add_lang:hello_msg}
+        self.additional_lang.append(result)
+        print(f'{add_lang}:{hello_msg} add into self.additional_lang <- {result}')
+        print(self.additional_lang)
         return None
     
     def reset_hello(self, remove_lang:str)-> None:
