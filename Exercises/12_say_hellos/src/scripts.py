@@ -49,8 +49,9 @@ class Greetings:
         # YOUR CODE HERE
         pass
     
-    def add_hello(self, add_lang, hello_msg):
+    def add_hello(self, add_lang:str, hello_msg:str) -> None:
         # YOUR CODE HERE
+        add_lang = add_lang.lower()
         for x in self.data:
             for key, value in x.items():
                 if key == add_lang:
@@ -66,10 +67,11 @@ class Greetings:
                 return None
         self.additional_lang.append({add_lang:hello_msg})
         print(f'{add_lang}:{hello_msg} add into self.additional_lang')
-        return True
+        return None
     
-    def reset_hello(self, remove_lang):
+    def reset_hello(self, remove_lang:str)-> None:
         # YOUR CODE HERE
+        remove_lang = remove_lang.lower()
         for idx,y in enumerate(self.additional_lang):
             for key, _ in y.items():
                 if key == remove_lang:
