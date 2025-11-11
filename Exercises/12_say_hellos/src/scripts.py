@@ -51,14 +51,19 @@ class Greetings:
     
     def add_hello(self, add_lang, hello_msg):
         # YOUR CODE HERE
+        for x in self.data:
+            for key, value in x.items():
+                if key == add_lang:
+                    print(f'{add_lang} already existed at language.json. Add language action abort.')
+                    return None
         for y in self.additional_lang:
             for key, value in y.items():
                 if key == add_lang:
                     if value == hello_msg:
-                        print(f'{add_lang}:{value} has already existed. Action Abort.')
-                        return False
-                print(f'Entries: {add_lang}:{hello_msg} already existed. If you need to amend, use amend_hello instead. Action Abort.')
-                return False
+                        print(f'{add_lang}:{value} has already existed in additional language. No action executed.')
+                        return None
+                print(f'Entries: {add_lang}:{value} already existed. If you need to amend {add_lang} to {hello_msg}, use amend_hello instead. Action thereby abort.')
+                return None
         self.additional_lang.append({add_lang:hello_msg})
         print(f'{add_lang}:{hello_msg} add into self.additional_lang')
         return True
@@ -69,8 +74,9 @@ class Greetings:
             for key, _ in y.items():
                 if key == remove_lang:
                     del self.additional_lang[idx]
-                    return True
-        return False
+                    return None
+        print(f'{remove_lang} not found. No language has reset.')
+        return None
     
     def reset_all_hellos(self):
         # YOUR CODE HERE
