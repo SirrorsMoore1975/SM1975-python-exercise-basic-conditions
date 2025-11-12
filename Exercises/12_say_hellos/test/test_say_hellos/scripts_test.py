@@ -5,6 +5,8 @@ import json
 import pytest
 from src.scripts import Greetings
 
+my_greeting_class = Greetings()
+
 USERNAME="username"
 AGE="age"
 LANGUAGE="language"
@@ -103,18 +105,21 @@ latest_add_lang_list = data_list("update_languages.json")
 def add_language():
     for i in additional_lang_list:
         for key, value in i.items():
-            Greetings().add_hello(key,value)
+            my_greeting_class.add_hello(key,value)
             
 def update_language():
     for i in latest_add_lang_list:
         for key, value in i.items():
-            Greetings().amend_hello(key,value)
+            my_greeting_class.amend_hello(key,value)
+    return None
 
 def reset_language(lang):
-    Greetings.reset_hello(lang)
+    my_greeting_class.reset_hello(lang)
+    return None
 
 def reset_all_language():
-    Greetings().reset_all_hellos()
+    my_greeting_class.reset_all_hellos()
+    return None
     
 def search_lang_hello(lang_list,lang):
     for y in lang_list:
@@ -135,31 +140,28 @@ def search_lang_hello(lang_list,lang):
 def test_greetings_languages(candidate_index,expected):
     person=users_payload[candidate_index][USERNAME]
     lang_use=users_payload[candidate_index][LANGUAGE]
-    result = Greetings().say_hellos(person, lang_use)
+    result = my_greeting_class.say_hellos(person, lang_use)
     assert result == expected
 
-@pytest.mark.parametrize("candidate_index,add_lang,expected",[
-    (0,FILIPINO,"Kumusta ka na? Lara."),
-    (1,HAWAIIAN,"Pehea 'oe? Gentle."),
-    (2,HMONG_DAW,"Koj nyob li cas lawm? Alyx."),
-    (3,YORUBA,"Bawo ni o se wa? Ramsey."),
-    (4,YUCATEC_MAYA,"Bix a beel? Clinton."),
-    (5,ZAPOTEC,"Xi modo nuulu? Walter.")
+@pytest.mark.parametrize("candidate_index,add_lang,expected_one, expected_two",[
+    (0,FILIPINO,"Kumusta ka na? Lara.","How are you? Lara."),
+    (1,HAWAIIAN,"Pehea 'oe? Gentle.", "How are you? Gentle."),
+    (2,HMONG_DAW,"Koj nyob li cas lawm? Alyx.", "How are you? Alyx."),
+    (3,YORUBA,"Bawo ni o se wa? Ramsey.", "How are you? Ramsey."),
+    (4,YUCATEC_MAYA,"Bix a beel? Clinton.", "How are you? Clinton."),
+    (5,ZAPOTEC,"Xi modo nuulu? Walter.", "How are you? Walter.")
 ])
 
-def test_add_language(candidate_index,add_lang,expected):
+def test_add_and_reset_language(candidate_index,add_lang,expected_one, expected_two):
+    """
+        pytest for add and remove language
+    """
     test_lang = search_lang_hello(additional_lang_list,add_lang)
-    Greetings().add_hello(add_lang, test_lang[add_lang])
+    my_greeting_class.add_hello(add_lang, test_lang[add_lang])
     person=users_payload_two[candidate_index][USERNAME]
     lang_use=users_payload_two[candidate_index][LANGUAGE]
-    result = Greetings().say_hellos(person, lang_use)
-    assert result == expected
-
-# @pytest.mark.parametrize("candidate_index,expected",[
-#     (0,"Ogenkidesuka? Karen-san."),
-#     (1,"Ce mai faceți? Robert."),
-#     (2,"How are you? Quentin."),
-#     (3,"Nǐ hǎo ma? Issac."),
-#     (4,"Howzit? Charlie."),
-#     (5,"Kuidas sul läheb? Lopez.")
-# ])
+    result = my_greeting_class.say_hellos(person, lang_use)
+    assert result == expected_one
+    my_greeting_class.reset_hello(add_lang)
+    result = my_greeting_class.say_hellos(person, lang_use)
+    assert result == expected_two
