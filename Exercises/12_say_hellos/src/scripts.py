@@ -92,7 +92,8 @@ class Greetings:
     
     def reset_hello(self, remove_lang:str)-> None:
         # YOUR CODE HERE
-        """_delete specific hello to of the selected language_
+        """
+            _delete specific hello to of the selected language_
 
         Args:
             remove_lang (str): _the language that you wanted to remove_
