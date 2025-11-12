@@ -13,6 +13,16 @@ class Greetings:
         self.additional_lang=[]
     
     def return_hellos(self,lang:str) -> str:
+        """
+            _An internal helper function to ease say_hellos.
+            It return the hello lay down in lang_list. If the script found the hello message of that language, it return that hello in that language. If the script cannot found the language, it return 'How are you?'._
+            
+            Args: 
+                lang (str): _expected the language name._
+            
+            Returns:
+                str: _return a greeting of the supported language, return `How are you?` if language not supported._
+        """
         lang = lang.lower()
         def check_lang_list(lang_list):
             for z in lang_list:
@@ -30,6 +40,16 @@ class Greetings:
         
     def say_hellos(self, person:str="Anonymous", lang:str="british_english")->str:
         # YOUR CODE HERE
+        """
+            _The class function that return the hello of a given language_
+
+        Args:
+            person (str, optional): _The name of the person who the script shall address to_. Defaults to "Anonymous".
+            lang (str, optional): _The language to greet, if supported, to the person_. Defaults to "british_english".
+
+        Returns:
+            str: _return the greeting statement address to the given person on that given language, if available,_
+        """
         JAPANESE="japanese"
         
         lang = lang.lower()
@@ -43,6 +63,15 @@ class Greetings:
     
     def add_hello(self, add_lang:str, hello_msg:str) -> None:
         # YOUR CODE HERE
+        """_Add hello to a specified language with the hello message. The script should accept one entry. Further same language will not write to the given class. If required amendment to the language, use amend_hello instead._
+
+        Args:
+            add_lang (str): _add language into the class_
+            hello_msg (str): _add hello message to that language_
+
+        Returns:
+            _None_type_: _None is expected_
+        """
         result = {}
         add_lang = add_lang.lower()
         def check_repeat(lang_list):
@@ -63,6 +92,14 @@ class Greetings:
     
     def reset_hello(self, remove_lang:str)-> None:
         # YOUR CODE HERE
+        """_delete specific hello to of the selected language_
+
+        Args:
+            remove_lang (str): _the language that you wanted to remove_
+
+        Returns:
+            _None_type_: _None is expected_
+        """
         remove_lang = remove_lang.lower()
         for idx,y in enumerate(self.additional_lang):
             for key, _ in y.items():
