@@ -69,23 +69,8 @@ class Greetings:
             result = check_repeat(i)
             if result:
                 return None
-        # for x in self.data:
-        #     for key, value in x.items():
-        #         if key == add_lang:
-        #             print(f'{add_lang} already existed at language.json. Add language action abort.')
-        #             return None
-        # for y in self.additional_lang:
-        #     for key, value in y.items():
-        #         if key == add_lang:
-        #             if value == hello_msg:
-        #                 print(f'{add_lang}:{value} has already existed in additional language. No action executed.')
-        #                 return None
-        #             print(f'Entries: {add_lang}:{value} already existed. If you need to amend {add_lang}:{value} to {add_lang}:{hello_msg}, use amend_hello instead. Action thereby abort.')
-        #             return None
         result = {add_lang:hello_msg}
         self.additional_lang.append(result)
-        # print(f'{add_lang}:{hello_msg} add into self.additional_lang <- {result}')
-        # print(self.additional_lang)
         return None
     
     def reset_hello(self, remove_lang:str)-> None:
