@@ -26,14 +26,22 @@ class Greetings:
     
     def return_hellos(self,lang:str) -> str:
         lang = lang.lower()
-        for y in self.data:
-            for key,value in y.items():
-                if lang == key:
-                    return value
-        for x in self.additional_lang:
-            for key,value in x.items():
-                if lang == key:
-                    return value
+        def check_lang_list(lang_list):
+            nonlocal lang
+            for z in lang_list:
+                for key, value in z.items():
+                    if lang == key:
+                        return value
+        check_lang_list(self.data)
+        check_lang_list(self.additional_lang)
+        # for y in self.data:
+        #     for key,value in y.items():
+        #         if lang == key:
+        #             return value
+        # for x in self.additional_lang:
+        #     for key,value in x.items():
+        #         if lang == key:
+        #             return value
         return "How are you?"
         
     def say_hellos(self, person:str="Anonymous", lang:str="british_english")->str:
