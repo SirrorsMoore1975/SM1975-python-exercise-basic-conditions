@@ -20,6 +20,7 @@ ZAPOTEC="zapotec"
 JAPANESE="japanese"
 ROMANIAN="romanian"
 TAIWANESE="taiwanese_chinese"
+HAKKA="hakka"
 
 ENGLISH="english_british"
 
@@ -167,7 +168,10 @@ def test_add_and_reset_language(candidate_index,add_lang,expected_one, expected_
     assert result == expected_two
 
 @pytest.mark.parametrize("index,add_lang,add_hello, add_msg, person, expected",[
-    (TAIWANESE,"Ni Hao?","Xiao Mei", "no hao ma?"),
+    (TAIWANESE,"Ni Hao Ma?","Xiao Mei", "Nǐ hǎo ma? Xiao Mei."),
+    (HAKKA,"Ng3 Ho4 Ma3 ?", "MeiLing", "ng3 ho4 ma3 ? MeiLing."),
+    (JAPANESE,"Ohayogozaimasu?", "Sayori", "Kohnichiwa? Sayori-san."),
+    (ESTONIAN,"Kuidas sul läheb?", "Mark", "Kuidas läheb? Mark.")
 ])
 def test_existed_lang_not_addible(lang, add_msg, person,expected):
     """
@@ -179,4 +183,10 @@ def test_existed_lang_not_addible(lang, add_msg, person,expected):
         person (_type_): _description_
         expected (_type_): _description_
     """
-    pass
+    my_greeting_class.add_hello(lang,add_msg)
+    result=my_greeting_class.say_hellos(person,lang)
+    assert result == expected, "add hello to an existing language cannot change the language hello"
+    my_greeting_class.reset_hello(lang)
+    result=my_greeting_class.say_hellos(person,lang)
+    assert result == expected, "reset to a language hello should caused no effect at all"
+    
