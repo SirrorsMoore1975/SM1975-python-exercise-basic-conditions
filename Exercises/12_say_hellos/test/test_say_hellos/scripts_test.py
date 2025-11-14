@@ -167,13 +167,13 @@ def test_add_and_reset_language(candidate_index,add_lang,expected_one, expected_
     result = my_greeting_class.say_hellos(person, lang_use)
     assert result == expected_two
 
-@pytest.mark.parametrize("index,add_lang,add_hello, add_msg, person, expected",[
+@pytest.mark.parametrize("lang, add_msg, person, expected",[
     (TAIWANESE,"Ni Hao Ma?","Xiao Mei", "Nǐ hǎo ma? Xiao Mei."),
     (HAKKA,"Ng3 Ho4 Ma3 ?", "MeiLing", "ng3 ho4 ma3 ? MeiLing."),
     (JAPANESE,"Ohayogozaimasu?", "Sayori", "Kohnichiwa? Sayori-san."),
     (ESTONIAN,"Kuidas sul läheb?", "Mark", "Kuidas läheb? Mark.")
 ])
-def test_existed_lang_not_addible(lang, add_msg, person,expected):
+def test_existed_lang_not_addible(lang, add_msg, person, expected):
     """
         _existed language cannot be add_
 
