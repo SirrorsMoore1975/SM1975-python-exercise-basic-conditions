@@ -202,3 +202,4 @@ def test_add_lang_not_readdible(lang, add_msg_1, add_msg_2, person, expected):
     my_greeting_class.add_hello(lang, add_msg_2)
     result = my_greeting_class.say_hellos(person, lang)
     assert result == expected
+    my_greeting_class.reset_hello(lang)
