@@ -169,7 +169,7 @@ def test_add_and_reset_language(candidate_index,add_lang,expected_one, expected_
 @pytest.mark.parametrize("index,add_lang,add_hello, add_msg, person, expected",[
     (TAIWANESE,"Ni Hao?","Xiao Mei", "no hao ma?"),
 ])
-def test_lang_add_can_only_amend(lang, add_msg, person,expected):
+def test_existed_lang_not_addible(lang, add_msg, person,expected):
     """
         _existed language cannot be add_
 
