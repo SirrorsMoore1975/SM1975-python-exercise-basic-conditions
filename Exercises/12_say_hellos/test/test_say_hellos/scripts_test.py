@@ -169,7 +169,7 @@ def test_add_and_reset_language(candidate_index,add_lang,expected_one, expected_
 
 @pytest.mark.parametrize("lang, add_msg, person, expected",[
     (TAIWANESE,"Ni Hao Ma?","Xiao Mei", "Nǐ hǎo ma? Xiao Mei."),
-    (HAKKA,"Ng3 Ho4 Ma3 ?", "MeiLing", "ng3 ho4 ma3 ? MeiLing."),
+    (HAKKA,"Ng3 Ho4 Ma3 ?", "MeiLing", "ng3 ho4 mo3 ? MeiLing."),
     (JAPANESE,"Ohayogozaimasu?", "Sayori", "Kohnichiwa? Sayori-san."),
     (ESTONIAN,"Kuidas sul läheb?", "Mark", "Kuidas läheb? Mark.")
 ])
