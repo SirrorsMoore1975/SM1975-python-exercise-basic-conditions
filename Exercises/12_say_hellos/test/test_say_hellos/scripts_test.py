@@ -189,4 +189,17 @@ def test_existed_lang_not_addible(lang, add_msg, person, expected):
     my_greeting_class.reset_hello(lang)
     result=my_greeting_class.say_hellos(person,lang)
     assert result == expected, "reset to a language hello should caused no effect at all"
-    
+
+@pytest.mark.parametrize("lang, add_msg_1, add_msg_2,person, expected", [
+    (FILIPINO,additional_lang_list[0][FILIPINO],"How are things?", "John", "Kumusta ka na? John."),
+    (FILIPINO,"How are things?", additional_lang_list[0][FILIPINO], "David", "How are things? David."),
+    (HAWAIIAN,additional_lang_list[1][HAWAIIAN],latest_add_lang_list[2][HAWAIIAN], "Jasmine", "Pehea 'oe? Jasmine."),
+    (HAWAIIAN,latest_add_lang_list[2][HAWAIIAN],additional_lang_list[1][HAWAIIAN], "George", "Howzit? George")
+])
+
+def test_add_lang_not_readdible(lang, add_msg_1, add_msg_2, person, expected):
+    my_greeting_class.add_hello(lang, add_msg_1)
+    my_greeting_class.add_hello(lang, add_msg_2)
+    result = my_greeting_class.say_hellos(person, lang)
+    assert result == expected
+    my_greeting_class.reset_hello(lang)
