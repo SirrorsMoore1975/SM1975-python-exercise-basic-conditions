@@ -208,9 +208,22 @@ def test_add_lang_not_readdible(lang, add_msg_1, add_msg_2, person, expected):
 @pytest.fixture(scope="module")
 def setup_environment():
     add_language()
-    update_language()
+    # update_language()
     yield
     reset_all_language()
+    return None
 
-def test_amend_lang_and_reset(setup_environment):
+@pytest.mark.parametrize("lang",[
+    (FILIPINO),
+    (HAWAIIAN),
+    (HMONG_DAW),
+    (YORUBA),
+    (YUCATEC_MAYA),
+    (ZAPOTEC)
+])
+def test_amend_lang_and_reset(lang):
+    setup_environment()
+    result = my_greeting_class.say_hellos(lang, "Mark")
+    expected = f'{search_lang_hello(additional_lang_list,lang)} Mark.'
+    assert result == expected, ""
     
