@@ -107,6 +107,7 @@ def add_language():
     for i in additional_lang_list:
         for key, value in i.items():
             my_greeting_class.add_hello(key,value)
+    return None
             
 def update_language():
     for i in latest_add_lang_list:
@@ -203,3 +204,13 @@ def test_add_lang_not_readdible(lang, add_msg_1, add_msg_2, person, expected):
     result = my_greeting_class.say_hellos(person, lang)
     assert result == expected
     my_greeting_class.reset_hello(lang)
+
+@pytest.fixture(scope="module")
+def setup_environment():
+    add_language()
+    update_language()
+    yield
+    reset_all_language()
+
+def test_amend_lang_and_reset(setup_environment):
+    
