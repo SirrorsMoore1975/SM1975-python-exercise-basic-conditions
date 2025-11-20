@@ -22,16 +22,16 @@ HAKKA="hakka"
 
 @pytest.fixture(scope="module")
 def setup_environment():
-    my_greeting = Greetings()
+    my_greeting_class = Greetings()
     add_lang_list = data_list("test_languages.json")
     
     for lang_data in add_lang_list:
         for key, value in lang_data.items():
-            my_greeting.add_hello(key,value)
+            my_greeting_class.add_hello(key,value)
     
-    yield my_greeting
+    yield my_greeting_class
     
-    my_greeting.reset_all_hellos()
+    my_greeting_class.reset_all_hellos()
     
 def data_list(database_json):
     with open(database_json, "r", encoding="utf-8") as the_data_list:
