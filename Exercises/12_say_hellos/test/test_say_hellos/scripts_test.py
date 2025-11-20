@@ -42,7 +42,7 @@ def search_lang_hello(lang_list,lang):
         for keys, value in y.items():
             if keys == lang:
                 return {f"{keys}":f"{value}"}
-    return {f"{lang}":"How are you"}
+    return {f"{lang}":"How are you?"}
 
 
 @pytest.mark.parametrize("lang",[
@@ -56,6 +56,6 @@ def search_lang_hello(lang_list,lang):
 def test_amend_lang_and_reset(setup_environment,lang):
     my_greeting_class = setup_environment
     result = my_greeting_class.say_hellos("Mark", lang)
-    expected = f'{search_lang_hello(data_list("test_languages.json"),lang)} Mark.'
+    expected = f'{search_lang_hello(data_list("test_languages.json"),lang)[lang]} Mark.'
     assert result == expected, ""
     
