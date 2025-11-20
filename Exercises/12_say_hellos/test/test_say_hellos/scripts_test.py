@@ -54,7 +54,7 @@ def search_lang_hello(lang_list,lang):
     (ZAPOTEC)
 ])
 def test_amend_lang_and_reset(setup_environment,lang):
-    my_greeting_class = setup_environment()
+    my_greeting_class = setup_environment
     result = my_greeting_class.say_hellos("Mark", lang)
     expected = f'{search_lang_hello(data_list("test_languages.json"),lang)} Mark.'
     assert result == expected, ""
