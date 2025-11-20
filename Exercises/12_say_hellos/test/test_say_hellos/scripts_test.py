@@ -206,12 +206,28 @@ def test_add_lang_not_readdible(lang, add_msg_1, add_msg_2, person, expected):
     my_greeting_class.reset_hello(lang)
 
 @pytest.fixture(scope="module")
+def data_list(database_json):
+    with open(database_json, "r", encoding="utf-8") as the_data_list:
+        return json.load(the_data_list)
+
+def search_lang_hello(lang_list,lang):
+    for y in lang_list:
+        for keys, value in y.items():
+            if keys == lang:
+                return {f"{keys}":f"{value}"}
+    return {f"{lang}":"How are you"}
+
 def setup_environment():
-    add_language()
-    # update_language()
-    yield
-    reset_all_language()
-    return None
+    my_greeting = Greetings()
+    add_lang_list = data_list("test_language.json")
+    
+    for data_list in add_lang_list:
+        for key, value in data_list.items():
+            my_greeting.add_hello(key,value)
+    
+    yield my_greeting
+    
+    my_greeting.reset_all_hellos()
 
 @pytest.mark.parametrize("lang",[
     (FILIPINO),
