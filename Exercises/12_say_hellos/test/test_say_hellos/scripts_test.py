@@ -223,7 +223,7 @@ def setup_environment():
 ])
 def test_amend_lang_and_reset(lang):
     # setup_environment()
-    result = my_greeting_class.say_hellos(lang, "Mark")
+    result = my_greeting_class.say_hellos("Mark", lang)
     expected = f'{search_lang_hello(additional_lang_list,lang)} Mark.'
     assert result == expected, ""
     
