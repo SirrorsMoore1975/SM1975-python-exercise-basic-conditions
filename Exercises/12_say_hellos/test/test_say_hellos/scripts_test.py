@@ -70,7 +70,7 @@ def setup_add_amend_language_env():
     (YUCATEC_MAYA),
     (ZAPOTEC)
 ])
-def test_amend_lang_and_reset(setup_environment,lang):
+def test_add_lang(setup_environment,lang):
     my_greeting_class = setup_environment
     result = my_greeting_class.say_hellos("Mark", lang)
     expected = f'{search_lang_hello(data_list("test_languages.json"),lang)[lang]} Mark.'
@@ -86,4 +86,4 @@ def test_add_amend_lang(setup_add_amend_language_env,lang):
     my_greeting_class = setup_add_amend_language_env
     person = "James-san" if lang == JAPANESE else "James"
     result = my_greeting_class.say_hellos(person, lang)
-    for lang_data in 
+    test_list_list = ["test_languages","update_language"]
