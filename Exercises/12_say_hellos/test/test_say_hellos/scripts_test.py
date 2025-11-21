@@ -44,6 +44,23 @@ def search_lang_hello(lang_list,lang):
                 return {f"{keys}":f"{value}"}
     return {f"{lang}":"How are you?"}
 
+@pytest.fixture(scope="module")
+def setup_add_amend_language_env():
+    add_amend_hello = Greetings()
+    add_lang_list = data_list("test_languages.json")
+    amend_lang_list = data_list("update_languages.json")
+    
+    for lang_data in add_lang_list:
+        for key, value in lang_data.items():
+            add_amend_hello.add_hello(key, value)
+
+    for amend_lang_data in amend_lang_list:
+        for key, value in amend_lang_data.items():
+            add_amend_hello.amend_hello(key, value)
+
+    yield add_amend_hello
+    
+    add_amend_hello.reset_all_hellos()
 
 @pytest.mark.parametrize("lang",[
     (FILIPINO),
@@ -58,4 +75,15 @@ def test_amend_lang_and_reset(setup_environment,lang):
     result = my_greeting_class.say_hellos("Mark", lang)
     expected = f'{search_lang_hello(data_list("test_languages.json"),lang)[lang]} Mark.'
     assert result == expected, ""
-    
+
+
+@pytest.mark.parametrize("lang",[
+    (ESTONIAN),
+    (JAPANESE),
+    (HAWAIIAN)
+])
+def test_add_amend_lang(setup_add_amend_language_env,lang):
+    my_greeting_class = setup_add_amend_language_env
+    person = "James-san" if lang == JAPANESE else "James"
+    result = my_greeting_class.say_hellos(person, lang)
+    for lang_data in 
