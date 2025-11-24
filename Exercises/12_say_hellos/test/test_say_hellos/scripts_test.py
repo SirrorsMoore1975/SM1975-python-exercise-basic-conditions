@@ -20,6 +20,20 @@ ROMANIAN="romanian"
 TAIWANESE="taiwanese_chinese"
 HAKKA="hakka"
 
+@pytest.mark.parametrize("lang",[
+    (FILIPINO),
+    (HAWAIIAN),
+    (HMONG_DAW),
+    (YORUBA),
+    (YUCATEC_MAYA),
+    (ZAPOTEC)
+])
+
+def test_not_existed_lang(lang):
+    my_greeting_class = Greetings()
+    result = my_greeting_class.say_hello(lang,"Chad")
+    assert result == "How are you? Chad.", "should say `How are you? Chad.` for non-existed language."
+
 @pytest.fixture(scope="module")
 def setup_environment():
     my_greeting_class = Greetings()
@@ -75,7 +89,6 @@ def test_add_lang(setup_environment,lang):
     result = my_greeting_class.say_hellos("Mark", lang)
     expected = f'{search_lang_hello(data_list("test_languages.json"),lang)[lang]} Mark.'
     assert result == expected, ""
-
 
 @pytest.mark.parametrize("lang, person",[
     (ESTONIAN, "James"),
