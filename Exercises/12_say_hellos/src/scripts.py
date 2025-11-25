@@ -11,7 +11,6 @@ class Greetings:
         if not isinstance(self.data, list):
             print(ValueError("the json file is not a list"))
         self.additional_lang=[]
-        self.amend_lang=[]
     
     def return_hellos(self,lang:str) -> str:
         """
@@ -32,7 +31,7 @@ class Greetings:
                         if lang == key:
                             return value
             return None
-        check_list = [self.data, self.additional_lang]
+        check_list = [self.additional_lang, self.data]
         for i in check_list:
             result = check_lang_list(i)
             if result is not None:
@@ -58,9 +57,23 @@ class Greetings:
             person = person + "-san"
         return f"{self.return_hellos(lang)} {person}."
     
-    def amend_hello(self, amend_lang, amend_hello):
+    def amend_hello(self, amend_lang:str, amend_hello:str):
         # YOUR CODE HERE
-        pass
+        amend_lang = amend_lang.lower()
+        for data in self.additional_lang:
+            for key, value in data.items():
+                if amend_lang == key:
+                    data[key] = amend_hello
+                    print(f'amend_hello: {amend_lang} hello {value} has changed to {amend_hello}')
+                    return None
+        for the_data in self.data:
+            for key, value in the_data.items():
+                if amend_lang == key:
+                    self.additional_lang.append({ key : amend_hello })
+                    print(f'amend_hello: {amend_lang} hello {value} has changed to {amend_hello}')
+                    return None
+        print(f'amend_hello: No matching {amend_hello} found. use add_hellos')
+        return None
     
     def add_hello(self, add_lang:str, hello_msg:str) -> None:
         # YOUR CODE HERE
@@ -108,12 +121,14 @@ class Greetings:
                 if key == remove_lang:
                     del self.additional_lang[idx]
                     return None
-        print(f'{remove_lang} not found. No language has reset.')
+        print(f'reset_hello: {remove_lang} not found. No language has been reset.')
         return None
     
     def reset_all_hellos(self):
         # YOUR CODE HERE
-        pass
+        self.additional_lang = []
+        print("reset_all_hellos: All added hellos are removed and back to default.")
+        return None
     
     def is_adult(self):
         # YOUR CODE HERE
