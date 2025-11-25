@@ -50,7 +50,7 @@ def test_random_existing_lang():
         for key, value in test_dict.items():
             person = "Marine-san" if key == JAPANESE else "Marine"
             expected = f'{value} {person}.'
-            result = my_greeting_class.say_hellos(key, "Marine")
+            result = my_greeting_class.say_hellos("Marine", key)
             assert result == expected, f"[{test_num}]: should show {expected} for {value}, instead show: {result}"
 
 @pytest.mark.parametrize("lang",[
@@ -74,7 +74,7 @@ def setup_environment():
     
     for lang_data in add_lang_list:
         for key, value in lang_data.items():
-            my_greeting_class.add_hellos(key, value)
+            my_greeting_class.add_hello(key, value)
     
     yield my_greeting_class
     
