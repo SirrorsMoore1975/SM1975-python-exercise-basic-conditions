@@ -114,11 +114,13 @@ def setup_add_amend_language_env():
 
 @pytest.mark.parametrize("lang, person",[
     (ESTONIAN, "James"),
-    (JAPANESE, "James-san"),
+    (JAPANESE, "James"),
     (HAWAIIAN, "James")
 ])
 def test_add_amend_lang(setup_add_amend_language_env, person, lang):
     my_greeting_class = setup_add_amend_language_env
     result = my_greeting_class.say_hellos(person, lang)
+    if lang == JAPANESE:
+        person = person + "-san"
     expected = f'{search_lang_hello(data_list("update_languages.json"),lang)[lang]} {person}.'
     assert result == expected, "should amend the given language's hello"
