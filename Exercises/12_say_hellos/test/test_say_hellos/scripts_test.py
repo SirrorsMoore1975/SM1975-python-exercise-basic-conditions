@@ -27,14 +27,14 @@ CROATIAN="croatian"
 DANISH="danish"
 DUTCH="dutch"
 
-def random_integer(num: int)-> int:
+def random_integer(num: int) -> int:
     return math.floor(random.random() * (num + 1))
 
-def data_list(database_json):
+def data_list(database_json: str) -> list:
     with open(database_json, "r", encoding="utf-8") as the_data_list:
         return json.load(the_data_list)
 
-def search_lang_hello(lang_list,lang):
+def search_lang_hello(lang_list: str, lang: str) -> dict:
     for y in lang_list:
         for keys, value in y.items():
             if keys == lang:
@@ -64,7 +64,7 @@ def test_random_existing_lang():
 
 def test_not_existed_lang(lang):
     my_greeting_class = Greetings()
-    result = my_greeting_class.say_hellos(lang,"Chad")
+    result = my_greeting_class.say_hellos("Chad", lang)
     assert result == "How are you? Chad.", "should say `How are you? Chad.` for non-existed language."
 
 @pytest.fixture(scope="module")
@@ -74,7 +74,7 @@ def setup_environment():
     
     for lang_data in add_lang_list:
         for key, value in lang_data.items():
-            my_greeting_class.add_hellos(key,value)
+            my_greeting_class.add_hellos(key, value)
     
     yield my_greeting_class
     
@@ -88,7 +88,7 @@ def setup_environment():
     (YUCATEC_MAYA),
     (ZAPOTEC)
 ])
-def test_add_lang(setup_environment,lang):
+def test_add_lang(setup_environment, lang):
     my_greeting_class = setup_environment
     result = my_greeting_class.say_hellos("Mark", lang)
     expected = f'{search_lang_hello(data_list("test_languages.json"),lang)[lang]} Mark.'
@@ -117,8 +117,8 @@ def setup_add_amend_language_env():
     (JAPANESE, "James-san"),
     (HAWAIIAN, "James")
 ])
-def test_add_amend_lang(setup_add_amend_language_env,person, lang):
+def test_add_amend_lang(setup_add_amend_language_env, person, lang):
     my_greeting_class = setup_add_amend_language_env
     result = my_greeting_class.say_hellos(person, lang)
     expected = f'{search_lang_hello(data_list("update_language.json"),lang)[lang]} {person}.'
-    assert result == expected, "should amend the given langugage's hello"
+    assert result == expected, "should amend the given language's hello"
