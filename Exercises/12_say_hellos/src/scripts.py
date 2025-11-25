@@ -11,6 +11,7 @@ class Greetings:
         if not isinstance(self.data, list):
             print(ValueError("the json file is not a list"))
         self.additional_lang=[]
+        self.amend_lang=[]
     
     def return_hellos(self,lang:str) -> str:
         """
@@ -57,7 +58,7 @@ class Greetings:
             person = person + "-san"
         return f"{self.return_hellos(lang)} {person}."
     
-    def amend_hello(self):
+    def amend_hello(self, amend_lang, amend_hello):
         # YOUR CODE HERE
         pass
     
