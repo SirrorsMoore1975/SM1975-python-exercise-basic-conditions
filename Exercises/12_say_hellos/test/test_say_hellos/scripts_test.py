@@ -120,5 +120,5 @@ def setup_add_amend_language_env():
 def test_add_amend_lang(setup_add_amend_language_env, person, lang):
     my_greeting_class = setup_add_amend_language_env
     result = my_greeting_class.say_hellos(person, lang)
-    expected = f'{search_lang_hello(data_list("update_language.json"),lang)[lang]} {person}.'
+    expected = f'{search_lang_hello(data_list("update_languages.json"),lang)[lang]} {person}.'
     assert result == expected, "should amend the given language's hello"
