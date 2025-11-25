@@ -64,7 +64,7 @@ def test_random_existing_lang():
 
 def test_not_existed_lang(lang):
     my_greeting_class = Greetings()
-    result = my_greeting_class.say_hello(lang,"Chad")
+    result = my_greeting_class.say_hellos(lang,"Chad")
     assert result == "How are you? Chad.", "should say `How are you? Chad.` for non-existed language."
 
 @pytest.fixture(scope="module")
@@ -74,7 +74,7 @@ def setup_environment():
     
     for lang_data in add_lang_list:
         for key, value in lang_data.items():
-            my_greeting_class.add_hello(key,value)
+            my_greeting_class.add_hellos(key,value)
     
     yield my_greeting_class
     
