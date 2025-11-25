@@ -46,7 +46,7 @@ def test_random_existing_lang():
     my_greeting_class = Greetings()
     the_list = data_list("languages.json")
     for test_num in range(50):
-        test_dict = the_list[random_integer(len(the_list))]
+        test_dict = the_list[random_integer(len(the_list)) -1]
         for key, value in test_dict.items():
             person = "Marine-san" if key == JAPANESE else "Marine"
             expected = f'{value} {person}.'
