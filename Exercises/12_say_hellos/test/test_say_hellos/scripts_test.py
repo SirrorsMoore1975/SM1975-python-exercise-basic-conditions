@@ -21,6 +21,10 @@ JAPANESE="japanese"
 ROMANIAN="romanian"
 TAIWANESE="taiwanese_chinese"
 HAKKA="hakka"
+SOMALI="somali"
+SWAHILI = "swahili"
+TAJIK = "tajik"
+WELSH = "welsh"
 ESPERANTO="esperanto"
 BOSNIAN="bosnian"
 CROATIAN="croatian"
@@ -66,6 +70,20 @@ def test_not_existed_lang(lang):
     my_greeting_class = Greetings()
     result = my_greeting_class.say_hellos("Chad", lang)
     assert result == "How are you? Chad.", "should say `How are you? Chad.` for non-existed language."
+
+@pytest.mark.parametrize("lang, wrong_hello",[
+    (SOMALI,"Sidee de tahay?"),
+    (SWAHILI, "Habari ha zako?"),
+    (TAJIK, "Shumo chi chi umo khel?"),
+    (WELSH, "Sut ydych chi tah sut?")
+])
+
+def test_add_existing_lang(lang, wrong_hello):
+    my_greeting_class = Greetings()
+    my_greeting_class.add_hello(lang, wrong_hello)
+    result = my_greeting_class.say_hellos(lang, "Dave")
+    expected = f'{search_lang_hello(data_list("languages.json"), lang)[lang]} Dave.'
+    assert result == expected, "should not alter the hello message if the language hello already existed"
 
 @pytest.fixture(scope="module")
 def setup_environment():
