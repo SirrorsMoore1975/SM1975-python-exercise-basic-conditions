@@ -81,7 +81,7 @@ def test_not_existed_lang(lang):
 def test_add_existing_lang(lang, wrong_hello):
     my_greeting_class = Greetings()
     my_greeting_class.add_hello(lang, wrong_hello)
-    result = my_greeting_class.say_hellos(lang, "Dave")
+    result = my_greeting_class.say_hellos("Dave", lang)
     expected = f'{search_lang_hello(data_list("languages.json"), lang)[lang]} Dave.'
     assert result == expected, "should not alter the hello message if the language hello already existed"
 
