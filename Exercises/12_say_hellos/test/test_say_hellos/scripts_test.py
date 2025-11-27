@@ -159,7 +159,7 @@ def test_add_amend_reset_lang():
         assert result == expected, "should show added hello message of that language"
     for lang in amend_lang:
         my_greeting_class.amend_hello(lang, search_lang_hello(data_list("update_languages.json"),lang)[lang])
-        result = my_greeting_class.say_hellos(PERSON, lang)
+        result = my_greeting_class.say_hellos(person, lang)
         if lang == JAPANESE:
             PERSON = person + "-san"
         else:
