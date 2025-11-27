@@ -110,7 +110,11 @@ def test_add_lang(setup_environment, lang):
     my_greeting_class = setup_environment
     result = my_greeting_class.say_hellos("Mark", lang)
     expected = f'{search_lang_hello(data_list("test_languages.json"),lang)[lang]} Mark.'
-    assert result == expected, ""
+    assert result == expected, "should provide hello for the given language"
+    my_greeting_class.reset_hello(lang)
+    result = my_greeting_class.say_hellos("Jul", lang)
+    expected = 'How are you? Jul.'
+    assert result == expected, "should show `How are you? Jul.` when language reset."
 
 @pytest.fixture(scope="module")
 def setup_add_amend_language_env():
