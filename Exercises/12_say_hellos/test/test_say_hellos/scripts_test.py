@@ -159,11 +159,11 @@ def test_add_amend_reset_lang():
         assert result == expected, "should show added hello message of that language"
     for lang in amend_lang:
         my_greeting_class.amend_hello(lang, search_lang_hello(data_list("update_languages.json"),lang)[lang])
+        result = my_greeting_class.say_hellos(PERSON, lang)
         if lang == JAPANESE:
             PERSON = person + "-san"
         else:
             PERSON = person
-        result = my_greeting_class.say_hellos(PERSON, lang)
         expected = f'{search_lang_hello(data_list("update_languages.json"), lang)[lang]} {PERSON}.'
         assert result == expected, "should show amended hello message of that given language"
     my_greeting_class.reset_all_hellos()
@@ -172,10 +172,10 @@ def test_add_amend_reset_lang():
         expected = f'{search_lang_hello(data_list("languages.json"), lang)[lang]} {person}.'
         assert result == expected, "all reset should reset added and amendment language"
     for lang in amend_lang:
+        result = my_greeting_class.say_hellos(person, lang)
         if lang == JAPANESE:
             PERSON = person + "-san"
         else:
             PERSON = person
-        result = my_greeting_class.say_hellos(person, lang)
         expected = f'{search_lang_hello(data_list("languages.json"), lang)[lang]} {PERSON}.'
         assert result == expected, "all reset should reset added and amendment language"
