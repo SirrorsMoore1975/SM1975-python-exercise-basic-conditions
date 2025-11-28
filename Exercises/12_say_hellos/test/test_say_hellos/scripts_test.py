@@ -65,7 +65,7 @@ def test_specific_exist_language():
     lang = [ROMANIAN,TAIWANESE,HAKKA,ESPERANTO,BOSNIAN,CROATIAN,DANISH,DUTCH]
     for test_lang in lang:
         result = my_greeting_class.say_hellos("Charlotte", test_lang)
-        expected = f'{search_lang_hello(the_list, test_lang)[test_lang]}, Charlotte.'
+        expected = f'{search_lang_hello(the_list, test_lang)[test_lang]} Charlotte.'
         assert result  == expected, f"should show hello message of {test_lang}"
 
 @pytest.mark.parametrize("lang",[
