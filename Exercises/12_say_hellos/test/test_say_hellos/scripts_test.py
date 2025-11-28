@@ -18,13 +18,15 @@ YORUBA="yoruba"
 YUCATEC_MAYA="yucatec_maya"
 ZAPOTEC="zapotec"
 JAPANESE="japanese"
-ROMANIAN="romanian"
-TAIWANESE="taiwanese_chinese"
-HAKKA="hakka"
+
 SOMALI="somali"
 SWAHILI = "swahili"
 TAJIK = "tajik"
 WELSH = "welsh"
+
+ROMANIAN="romanian"
+TAIWANESE="taiwanese_chinese"
+HAKKA="hakka"
 ESPERANTO="esperanto"
 BOSNIAN="bosnian"
 CROATIAN="croatian"
@@ -55,7 +57,16 @@ def test_random_existing_lang():
             person = "Marine-san" if key == JAPANESE else "Marine"
             expected = f'{value} {person}.'
             result = my_greeting_class.say_hellos("Marine", key)
-            assert result == expected, f"[{test_num}]: should show {expected} for {value}, instead show: {result}"
+            assert result == expected, f"[{test_num}]: should show {expected} for {key}, instead show: {result}"
+
+def test_specific_exist_language():
+    my_greeting_class = Greetings()
+    the_list = data_list("languages.json")
+    lang = [ROMANIAN,TAIWANESE,HAKKA,ESPERANTO,BOSNIAN,CROATIAN,DANISH,DUTCH]
+    for test_lang in lang:
+        result = my_greeting_class.say_hellos("Charlotte", test_lang)
+        expected = f'{search_lang_hello(the_list, test_lang)[test_lang]}, Charlotte.'
+        assert result  == expected, f"should show hello message of {test_lang}"
 
 @pytest.mark.parametrize("lang",[
     (FILIPINO),
@@ -111,6 +122,12 @@ def test_add_lang(setup_environment, lang):
     result = my_greeting_class.say_hellos("Mark", lang)
     expected = f'{search_lang_hello(data_list("test_languages.json"),lang)[lang]} Mark.'
     assert result == expected, "should provide hello for the given language"
+    
+    my_greeting_class.add_hello(lang,"Add hello to test language?")
+    result = my_greeting_class.say_hellos("Mark", lang)
+    expected = f'{search_lang_hello(data_list("test_languages.json"),lang)[lang]} Mark.'
+    assert result == expected, "add_hello should take no effect in altering hello once added"
+    
     my_greeting_class.reset_hello(lang)
     result = my_greeting_class.say_hellos("Jul", lang)
     expected = 'How are you? Jul.'
