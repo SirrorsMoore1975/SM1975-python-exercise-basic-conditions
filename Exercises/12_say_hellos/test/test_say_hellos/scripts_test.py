@@ -198,3 +198,29 @@ def test_add_amend_reset_lang():
         
     #     expected = f'{search_lang_hello(data_list("languages.json"), lang)[lang]} {PERSON}.'
     #     assert result == expected, "all reset should reset added and amendment language"
+    
+def test_age_verification():
+    my_greeting_class = Greetings()
+    testers_age = [17,18,19,20,21,23,30,35,38,40]
+    default_age = 20
+    legal_age = [16,18,21,22,23]
+    # default test
+    for age in testers_age:
+        result = my_greeting_class.is_adult(age)
+        expected = age >= default_age
+        assert result == expected, "should check if tester's age is considered as adult"
+    
+    # change legal age for the same group of tester
+    for adult_age in legal_age:
+        my_greeting_class.amend_adult_age(adult_age)
+        for age in testers_age:
+            result = my_greeting_class.is_adult(age)
+            expected = age >= adult_age
+            assert result == expected, "should check age according to legal age changes"
+    
+    # Reset age function make default age fallback to 20
+    my_greeting_class.reset_adult_age()
+    
+    # Random tester age
+    
+    random_tester_age = random_integer(100)
