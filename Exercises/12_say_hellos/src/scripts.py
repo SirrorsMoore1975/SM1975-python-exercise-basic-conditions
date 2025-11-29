@@ -131,12 +131,12 @@ class Greetings:
         print("reset_all_hellos: All added hellos are removed and back to default.")
         return None
     
-    def is_adult(self, age: int) -> bool:
+    def is_adult(self, age: int = 20) -> bool:
         # YOUR CODE HERE
         print(f"is_adult: age checking for {age}")
         return age >= self.default_age
     
-    def amend_adult_age(self, age: int) -> None:
+    def amend_adult_age(self, age :int = 20) -> None:
         # YOUR CODE HERE
         self.default_age = age
         print(f"amend_adult_age: legal adult age changed to {age}")
