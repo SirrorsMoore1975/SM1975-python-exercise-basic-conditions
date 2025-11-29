@@ -11,6 +11,7 @@ class Greetings:
         if not isinstance(self.data, list):
             print(ValueError("the json file is not a list"))
         self.additional_lang=[]
+        self.default_age = 20
     
     def return_hellos(self,lang:str) -> str:
         """
@@ -124,25 +125,33 @@ class Greetings:
         print(f'reset_hello: {remove_lang} not found. No language has been reset.')
         return None
     
-    def reset_all_hellos(self):
+    def reset_all_hellos(self) -> None:
         # YOUR CODE HERE
         self.additional_lang = []
         print("reset_all_hellos: All added hellos are removed and back to default.")
         return None
     
-    def is_adult(self):
+    def is_adult(self, age: int) -> bool:
         # YOUR CODE HERE
-        pass
+        print(f"is_adult: age checking for {age}")
+        return self.default_age >= age
     
-    def amend_adult_age(self):
+    def amend_adult_age(self, age: int) -> None:
         # YOUR CODE HERE
-        pass
+        self.default_age = age
+        print(f"amend_adult_age: legal adult age changed to {age}")
+        return None
     
-    def reset_adult_age(self):
+    def reset_adult_age(self) -> None:
         # YOUR CODE HERE
-        pass
+        self.default_age = 20
+        print(f"reset_adult_age: legal adult age changed back to 20")
+        return None
     
-    def reset_to_default(self):
+    def reset_to_default(self) -> None:
         # YOUR CODE HERE
-        pass
+        self.default_age = 20
+        self.additional_lang = []
+        print(f"reset_to_default: reset adult age: 20, reset add and amended language back to default")
+        return None
     
