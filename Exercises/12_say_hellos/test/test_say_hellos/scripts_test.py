@@ -36,6 +36,13 @@ DUTCH="dutch"
 def random_integer(num: int) -> int:
     return math.floor(random.random() * (num + 1))
 
+def generate_int_btw(min: int, max: int) -> int:
+    range_width = max - min + 1
+    random_float = random.random()
+    scale_value = random_float * range_width
+    random_int = math.floor(scale_value)
+    return min + random_int
+
 def data_list(database_json: str) -> list:
     with open(database_json, "r", encoding="utf-8") as the_data_list:
         return json.load(the_data_list)
@@ -198,3 +205,47 @@ def test_add_amend_reset_lang():
         
     #     expected = f'{search_lang_hello(data_list("languages.json"), lang)[lang]} {PERSON}.'
     #     assert result == expected, "all reset should reset added and amendment language"
+    
+def test_age_verification():
+    my_greeting_class = Greetings()
+    testers_age = [17,18,19,20,21,23,30,35,38,40]
+    default_age = 20
+    legal_age = [16,18,21,22,23]
+    default_result = []
+    # default test
+    for age in testers_age:
+        result = my_greeting_class.is_adult(age)
+        expected = age >= default_age
+        default_result.append(expected) # data collect for test to check default age after a reset
+        assert result == expected, "should check if tester's age is considered as adult"
+    
+    # change legal age for the same group of tester
+    for adult_age in legal_age:
+        my_greeting_class.amend_adult_age(adult_age)
+        for age in testers_age:
+            result = my_greeting_class.is_adult(age)
+            expected = age >= adult_age
+            assert result == expected, "should check age according to legal age changes"
+    
+    # Reset age function make default age fallback to 20
+    my_greeting_class.reset_adult_age()
+    for idx in enumerate(len(testers_age)):
+        result = my_greeting_class.is_adult(testers_age[idx])
+        expected = default_result[idx]
+        assert result == expected, "should produce same result after the reset"
+    # Random tester age
+    random_legal_age = generate_int_btw(16,23)
+    my_greeting_class.amend_adult_age(random_legal_age)
+    random_number_tester = random_integer(50)
+    # random_tester_age = random_integer(100)
+    participator = [] # list of random testers' age that participate
+    expected_result = [] # list of expected result according to the participator
+    for _ in range(random_number_tester):
+        age = random_integer(100)
+        participator.append(age)
+        expected_result.append(random_legal_age >= age)
+    for idy in enumerate(len(participator)):
+        result = my_greeting_class.is_adult(participator[idy])
+        expected = expected_result[idy]
+        assert result == expected, f"should check random participators at {participator[idy]} with random legal age: {random_legal_age}"
+    my_greeting_class.reset_adult_age()
