@@ -134,7 +134,7 @@ class Greetings:
     def is_adult(self, age: int) -> bool:
         # YOUR CODE HERE
         print(f"is_adult: age checking for {age}")
-        return self.default_age >= age
+        return age >= self.default_age
     
     def amend_adult_age(self, age: int) -> None:
         # YOUR CODE HERE
