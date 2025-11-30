@@ -243,7 +243,7 @@ def test_age_verification():
     for _ in range(random_number_tester):
         age = random_integer(100)
         participator.append(age)
-        expected_result.append(random_legal_age >= age)
+        expected_result.append(age >= random_legal_age)
     for idy in enumerate(len(participator)):
         result = my_greeting_class.is_adult(participator[idy])
         expected = expected_result[idy]
