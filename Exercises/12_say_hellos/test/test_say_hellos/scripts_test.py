@@ -229,7 +229,7 @@ def test_age_verification():
     
     # Reset age function make default age fallback to 20
     my_greeting_class.reset_adult_age()
-    for idx in enumerate(len(testers_age)):
+    for idx in enumerate(testers_age):
         result = my_greeting_class.is_adult(testers_age[idx])
         expected = default_result[idx]
         assert result == expected, "should produce same result after the reset"
@@ -244,7 +244,7 @@ def test_age_verification():
         age = random_integer(100)
         participator.append(age)
         expected_result.append(age >= random_legal_age)
-    for idy in enumerate(len(participator)):
+    for idy in enumerate(participator):
         result = my_greeting_class.is_adult(participator[idy])
         expected = expected_result[idy]
         assert result == expected, f"should check random participators at {participator[idy]} with random legal age: {random_legal_age}"
