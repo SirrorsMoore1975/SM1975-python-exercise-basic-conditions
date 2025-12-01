@@ -2,7 +2,7 @@ class Greetings:
     """
     class Greetings
     """
-    def __init__(self) -> str :
+    def __init__(self):
         # YOUR CODE HERE
         pass
     
