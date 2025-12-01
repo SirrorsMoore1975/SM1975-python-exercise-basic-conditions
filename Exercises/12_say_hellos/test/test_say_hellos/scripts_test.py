@@ -233,7 +233,10 @@ def test_age_verification():
         result = my_greeting_class.is_adult(value)
         expected = default_result[idx]
         assert result == expected, "should produce same result after the reset"
+    
+def test_random_age_participator():
     # Random tester age
+    my_greeting_class = Greetings()
     random_legal_age = generate_int_btw(16,23)
     my_greeting_class.amend_adult_age(random_legal_age)
     random_number_tester = random_integer(50)
