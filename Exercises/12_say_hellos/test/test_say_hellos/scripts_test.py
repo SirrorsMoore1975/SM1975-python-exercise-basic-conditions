@@ -249,3 +249,8 @@ def test_age_verification():
         expected = expected_result[idy]
         assert result == expected, f"should check random participators at {participator[idy]} with random legal age: {random_legal_age}"
     my_greeting_class.reset_adult_age()
+    expected_result = []
+    for idz, _ in range(random_number_tester):
+        expected = participator[idz] >= 20
+        result = my_greeting_class.is_adult(participator[idz])
+        assert result == expected, "a reset will make the age verification back to 20"
