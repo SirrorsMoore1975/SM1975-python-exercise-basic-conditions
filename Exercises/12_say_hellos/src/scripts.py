@@ -8,7 +8,7 @@ class Greetings:
     
     def say_hellos(self, person, lang):
         # YOUR CODE HERE
-        return ""
+        return "Your hellos here"
     
     def amend_hello(self, amend_lang, amend_hello):
         # YOUR CODE HERE
@@ -16,7 +16,7 @@ class Greetings:
     
     def add_hello(self, add_lang, hello_msg):
         # YOUR CODE HERE
-        return None | None
+        return None 
     
     def reset_hello(self, remove_lang):
         # YOUR CODE HERE
@@ -28,7 +28,7 @@ class Greetings:
     
     def is_adult(self, age):
         # YOUR CODE HERE
-        return True | False
+        return False
     
     def amend_adult_age(self, age):
         # YOUR CODE HERE
