@@ -6,13 +6,5 @@ Do not use internal build-it method
 @returns {list} ??? a flattened list of the list of lists
 """
 
-def flatten(_list):
-    result = []
-    for ele in _list:
-        if isinstance(ele, list):
-            result += flatten(ele)
-            # for item in ele:
-            #     result.append(item)
-        else: 
-            result.append(ele)
-    return result
+def flatten():
+    pass

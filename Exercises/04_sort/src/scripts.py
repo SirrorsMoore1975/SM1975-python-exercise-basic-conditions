@@ -16,13 +16,8 @@ Declare a function sort. Don’t use the built-in sort method.
 """
 
 
-def sort(array: list) -> list:
-    if len(array) <= 1:
-        return array
-    pivot = array[0]
-    leftHandSide = [i for i in array[1:] if i <= pivot]
-    rightHandSide = [j for j in array[1:] if j > pivot]
-    return sort(leftHandSide) + [pivot] + sort(rightHandSide)
+def sort():
+    pass
 
 
 

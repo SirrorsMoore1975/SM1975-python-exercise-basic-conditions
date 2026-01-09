@@ -10,31 +10,15 @@ boolengate
 @returns {any} ??? the expression expected depends on the logic gate 
 """
 
-def booleangate_not(A):
-    return not A
+def booleangate_not():
+    pass
 
-def booleangate(logic, x, y):
-    match logic:
-        case "and":
-            if x:
-                return y
-            else:
-                return x
-        case "or":
-            if x:
-                return x
-            else:
-                return y
-        case _:
-            return "logic not defined"
-    
+def booleangate():
+    pass
 
 def giveTrue():
-    return True
+    pass
 
-def inverse_True(data):
-    if (data) :
-        return False
-    else:
-        return True
+def inverse_True():
+    pass
     
