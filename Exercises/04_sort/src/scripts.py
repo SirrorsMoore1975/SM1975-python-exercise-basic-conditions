@@ -18,6 +18,15 @@ Declare a function sort. Don’t use the built-in sort method.
 import random
 
 def sort(the_list:list) -> list:
+    """
+    Sort
+    without sort method
+    Args:
+        the_list(list): unsorted list
+    
+    Returns:
+        return(list): sorted list
+    """
     
     def quick_sort(my_list:list) -> list:
         """
@@ -26,7 +35,17 @@ def sort(the_list:list) -> list:
         2.partition the list into two sub-list, depends if they are less or greater that pivot
         3.recursive left hand side and right hand side and apply the above step to sub-list
         
-        The usual go to script for sort without internal method
+        The usual go to script for sort without internal method. 
+
+        Due to recursive nature, if the pivot is the largest or the smallest number, the sort will iterate in a linear manner instead of dividing the sub-lists into equal parts.
+
+        Time Complexity:
+            Best case: 0(N log(N))
+            Average case: 0(N long(N))
+            Worst caseL 0(N^2)
+        
+        Space Complexity:
+            0(log(N)) : required extra space
 
         Args:
             my_list(list): a list of unsorted integers
@@ -34,9 +53,10 @@ def sort(the_list:list) -> list:
         Returns:
             return (list): return a sorted list
         """
-        if len(the_list) <= 1:
-            return the_list
-        pivot = my_list[len(my_list) // 2]
+        n = len(my_list)
+        if n <= 1:
+            return my_list
+        pivot = my_list[n // 2]
         left_hand_side = [i for i in my_list if i < pivot]
         middle_side = [k for k in my_list if k == pivot]
         right_hand_side = [j for j in my_list if j > pivot]
@@ -52,7 +72,17 @@ def sort(the_list:list) -> list:
         5. continue until the end of the list
         6. where no more swaps are needed, the sort is finished
 
+        flag provided unnecessary sort for already sorted situation
+
         not efficient for large dataset, good for smaller list and learning about sort 
+
+        Time Complexity:
+            Best case: 0(N)
+            Average case: 0(N ^2)
+            Worst caseL 0(N^2)
+        
+        Space Complexity:
+            0(1) : required no extra space
 
         Args:
 
@@ -63,10 +93,16 @@ def sort(the_list:list) -> list:
             returns (list): sorted list
         """
         n = len(my_list)
-        for i in range(n):
+        flag = 0
+        # for i in range(n):
+        for i in range(n - 1):
             for j in range(0, n - 1 - i):
                 if my_list[j] > my_list[j + 1]:
-                    my_list[j], my_list[i] = my_list[j+1], my_list[j]
+                    # my_list[j], my_list[i] = my_list[j+1], my_list[j]
+                    my_list[j], my_list[j+ 1] = my_list[j+1], my_list[j]
+                    flag = 1
+            if flag == 0:
+                break
         return my_list
     
     def selection_sort(my_list):
@@ -78,6 +114,14 @@ def sort(the_list:list) -> list:
         4. Repeat the above steps until the list are sorted
 
         Minimize the number of swaps, make sort much efficient. However, larger data set will required equal sides of steps which make it not efficient for larger list.
+
+        Time Complexity:
+            Best case: 0(N^2)
+            Average case: 0(N^2)
+            Worst caseL 0(N^2)
+        
+        Space Complexity:
+            0(1) : required no extra space
 
         Args:
             my_list (list): unsorted list
@@ -97,7 +141,7 @@ def sort(the_list:list) -> list:
 
     def insertion_sort(my_list):
         """
-        Inserction Sort
+        Insertion Sort
 
         1. Assumed the first element is sorted, first select the second element
         2. Compare the current element with the previous elements in the sorted portion
@@ -107,13 +151,22 @@ def sort(the_list:list) -> list:
 
         Efficient for small datasets, it is efficient for partially sorted list. It is an online algorithm, meaning it can sort a list as it receives it.
 
+        Time Complexity:
+            Best case: 0(N)
+            Average case: 0(N^2)
+            Worst caseL 0(N^2)
+        
+        Space Complexity:
+            0(1) : required no extra space
+
         Args:
             my_list (list): unsorted list
         
         Returns:
             return (list): sorted list
         """
-        for i in range(1, len(my_list)):
+        n = len(my_list)
+        for i in range(1, n):
             key = my_list[i]
             j = i - 1
             while j >= 0 and key < my_list[j]:
@@ -128,7 +181,15 @@ def sort(the_list:list) -> list:
         1. Divide unsorted list element into n number of sub-list, each sub-list contain one element. A list of one element is considered sorted.
         2. Repeat merging sub-lists to produce new sorted sub-lists until only one sublist remained. The remained sub-list will be the sorted list
 
-        Time complexity is 0(n log n), it is efficient for larger dataset. It required extra space proportional to the size of the input list.
+        Time complexity is 0(N log (N)), it is efficient for larger dataset. It required extra space proportional to the size of the input list.
+
+        Time Complexity:
+            Best case: 0(N log(N))
+            Average case: 0(N log(N))
+            Worst caseL 0(N log(N))
+        
+        Space Complexity:
+            0(N) : required extra space
 
         Args:
             my_list (list): unsorted list
@@ -136,8 +197,9 @@ def sort(the_list:list) -> list:
         Returns:
             return (list): sorted list
         """
-        if len(my_list) > 1:
-            mid = len(my_list) // 2
+        n = len(my_list)
+        if n > 1:
+            mid = n // 2
             left = my_list[:mid]
             right = my_list[mid:]
 
@@ -170,8 +232,8 @@ def sort(the_list:list) -> list:
     def select_which_sort(my_list):
         sort_algorithm = ["quick", "bubble", "selection", "insertion", "merge"]
         available = len(sort_algorithm)
-        #the_method = sort_algorithm[random.randint(0,available)]
-        the_method = "quick"
+        the_method = sort_algorithm[random.randint(0,available)]
+        #the_method = "quick"
         print(the_method)
         match the_method:
             case "quick":
@@ -187,6 +249,3 @@ def sort(the_list:list) -> list:
             case "_":
                 return my_list
     return select_which_sort(the_list)
-
-
-
