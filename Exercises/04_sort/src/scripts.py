@@ -231,7 +231,7 @@ def sort(the_list:list) -> list:
     
     def select_which_sort(my_list):
         sort_algorithm = ["quick", "bubble", "selection", "insertion", "merge"]
-        available = len(sort_algorithm)
+        available = len(sort_algorithm) -1
         the_method = sort_algorithm[random.randint(0,available)]
         #the_method = "quick"
         print(the_method)
