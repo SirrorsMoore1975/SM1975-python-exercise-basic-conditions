@@ -10,8 +10,18 @@ boolengate
 @returns {any} ??? the expression expected depends on the logic gate 
 """
 
-def booleangate_not():
-    pass
+def booleangate_not(A : bool) -> bool:
+    """
+    Inverse the input boolean
+
+    Args:
+        A (bool): boolean that wanted to be NOT of 
+    Returns:
+        return (bool): NOT of A
+    """
+    if isinstance(A, bool):
+        return not A
+    raise ValueError("input not boolean")
 
 def booleangate():
     pass
