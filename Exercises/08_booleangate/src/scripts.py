@@ -10,7 +10,7 @@ boolengate
 @returns {any} ??? the expression expected depends on the logic gate 
 """
 
-def booleangate_not(A : bool) -> bool:
+def booleangate_not(A) -> bool:
     """
         Inverse the input boolean
 
@@ -19,11 +19,10 @@ def booleangate_not(A : bool) -> bool:
     Returns:
         return (bool): NOT of A
     """
-    if isinstance(A, bool):
-        return not A
-    raise ValueError("input not boolean")
+    
+    return not A
 
-def booleangate(logic: str, X:bool, Y:bool)-> bool:
+def booleangate(logic: str, X, Y)-> bool:
     """
         Provide output depends on logic and its input
     
@@ -37,10 +36,6 @@ def booleangate(logic: str, X:bool, Y:bool)-> bool:
     available_logicgates = ["and", "or", "nand", "nor"]
     if logic not in available_logicgates:
         raise ValueError("logic not available in logic gates list")
-    if isinstance(X, bool):
-        raise ValueError("X is not boolean")
-    if isinstance(Y, bool):
-        raise ValueError("Y is not boolean")
 
     def logic_and(x,y):
         if x:
@@ -75,7 +70,7 @@ def giveTrue()-> bool:
     """
     return True
 
-def inverse_True(data):
+def inverse_True(data)-> bool:
     """
         inverse True (inverse given boolean) when the usual convention is the opposite
 
